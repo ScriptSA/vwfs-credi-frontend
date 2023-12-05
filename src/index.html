@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>VwfsCrediFrontend</title>
@@ -10,7 +11,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+
 <body class="mat-typography">
   <app-root></app-root>
+  <!-- Buttons for toggling themes -->
+  <div class="theme-selector">
+    <button id="darkThemeBtn">Activar Tema Oscuro <i>☾</i></button>
+    <button id="lightThemeBtn">Activar Tema Claro <i>☼</i></button>
+  </div>
+  <!-- theme script -->
+  <script src="./assets/js/themeSelector.js"></script>
 </body>
+
 </html>
