@@ -1,0 +1,31 @@
+<!-- login -->
+<div class="app-container">
+  <div class="login-card">
+    <div class="login-header">
+      <div class="logo_box"></div>
+      <h1 class="title">
+        VWFS Backoffice te da la Bienvenida</h1>
+      <h3 class="subtitle">
+        Ingresa tus credenciales para iniciar sesión
+      </h3>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Ingresa tu Usuario</mat-label>
+        <input matInput formControlName="username" placeholder="Usuario">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Ingresa tu Contraseña</mat-label>
+        <input matInput formControlName="password" type="password" [type]="hide ? 'password' : 'text'"
+          placeholder="Contraseña">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+      <button class="primary-btn" mat-button type="submit">Ingresar al Sistema</button>
+      <p>Si olvidaste tu clave, <a href="">hacé click aquí</a></p>
+    </form>
+  </div>
+</div>
