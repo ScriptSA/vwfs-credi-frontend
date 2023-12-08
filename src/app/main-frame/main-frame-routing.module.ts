@@ -7,11 +7,9 @@ const routes: Routes = [
     path: '',
     component: MainFrameComponent,
     children: [
-      {
-        path: 'admision-search',
-        loadChildren: () => import('../admision-search/admision-search.module').then(m => m.AdmisionSearchModule)
-      }
-    ],
+      { path: 'admision-search', loadChildren: () => import('../admision-search/admision-search.module').then(m => m.AdmisionSearchModule) },
+      { path: '', loadChildren: () => import('../home/home.module').then(m => m.HomeModule) }
+    ]
   }
 ];
 
