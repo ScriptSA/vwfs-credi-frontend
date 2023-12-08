@@ -1,5 +1,5 @@
 <!-- login -->
-<div class="app-container">
+<div class="login-container">
   <div class="login-card">
     <div class="login-header">
       <div class="logo_box"></div>
@@ -21,7 +21,7 @@
           placeholder="Contraseña">
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
           [attr.aria-pressed]="hide">
-          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+          <mat-icon fontSet="material-symbols-outlined">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
         </button>
       </mat-form-field>
       <button class="primary-btn" mat-button type="submit">Ingresar al Sistema</button>
