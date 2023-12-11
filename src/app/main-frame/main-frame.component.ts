@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { AuthService } from '../shared/auth/auth.service';
 
 @Component({
@@ -12,21 +12,32 @@ export class MainFrameComponent {
   isUser2LoggedIn: boolean;
 
   //navbar toggle
-  navOpen=false;
+  navOpen = false;
 
-  //item toggle
-  subOpen=false;
-
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private renderer: Renderer2) {
     this.isUser1LoggedIn = this.authService.getCurrentUserRole() === 'user1';
     this.isUser2LoggedIn = this.authService.getCurrentUserRole() === 'user2';
   }
 
-  toggleNav(){
-    this.navOpen =! this.navOpen;
+  toggleNav() {
+    this.navOpen = !this.navOpen;
   }
 
-  toggleSubs(){
-    this.subOpen =! this.subOpen;
+  toggleSubItems(event: any) {
+    const subsOpened = document.querySelectorAll('.item');
+    const subClick = event.target.closest('.item');
+    const subActive = event.target.closest('.sub-open');
+
+    subsOpened.forEach(subsOpened => {
+      this.renderer.removeClass(subsOpened, 'sub-open');
+    });
+    if (subClick) {
+      if (subActive) {
+        this.renderer.removeClass(subClick, 'sub-open');
+      }
+      else {
+        this.renderer.addClass(subClick, 'sub-open');
+      }
+    }
   }
 }

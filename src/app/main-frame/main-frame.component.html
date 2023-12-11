@@ -2,8 +2,8 @@
   <!-- sidebar -->
   <div class="sidenav">
     <!-- sidebar-toggle -->
-    <div class="item" [title]="navOpen ? '' : 'Abrir Menú'">
-      <button mat-button class="item-header" (click)="toggleNav()">
+    <div class="item" [title]="navOpen ? '' : 'abrir Menú'">
+      <button mat-button (click)="toggleNav()">
         <mat-icon fontSet="material-symbols-outlined">{{navOpen ? 'menu_open' : 'menu'}}</mat-icon>
         <div class="link-txt" *ngIf="navOpen">
           <b>Cerrar Menú</b>
@@ -15,14 +15,15 @@
       Herramientas
     </div>
     <!-- admision - lv0 -->
-    <div class="item" [ngClass]="{'sub-open' : subOpen}" *ngIf="true">
-      <button mat-button class="item-header" [title]="navOpen ? '' : 'Admisión'" (click)="toggleSubs()">
-        <mat-icon fontSet="material-symbols-outlined">folder</mat-icon>
+    <div class="item" *ngIf="true">
+      <button mat-button class="item-header" [title]="navOpen ? '' : 'abrir Admisión'" (click)="toggleSubItems($event)">
+        <mat-icon class="close" fontSet="material-symbols-outlined">folder</mat-icon>
+        <mat-icon class="open" fontSet="material-symbols-outlined">folder_open</mat-icon>
         <div class="link-txt" *ngIf="navOpen">
           <b>Admisión</b>
         </div>
-        <mat-icon class="indicator" fontSet="material-symbols-outlined">{{navOpen ? (subOpen ? 'expand_less' :
-          'expand_more') : (subOpen ? 'arrow_drop_down' : 'arrow_right')}}</mat-icon>
+        <mat-icon class="indicator" fontSet="material-symbols-outlined">{{navOpen ? 'expand_less' :
+          'arrow_right'}}</mat-icon>
       </button>
       <div class="item-content">
         <!-- titulo(sólo menu cerrado) - lv1 -->
@@ -30,14 +31,14 @@
           Admisión
         </div>
         <!-- PF - lv1 -->
-        <button mat-button class="sub-item" *ngIf="true" [routerLink]="['admision-search']">
+        <button mat-button class="sub-item" *ngIf="true" [routerLink]="['admision-search']" routerLinkActive="active">
           <mat-icon fontSet="material-symbols-outlined">accessibility</mat-icon>
           <div class="link-txt">
             <b>Personas Físicas</b>
           </div>
         </button>
         <!-- PJ - lv1 -->
-        <button mat-button class="sub-item" *ngIf="true" [routerLink]="['admision-search']">
+        <button mat-button class="sub-item" *ngIf="true">
           <mat-icon fontSet="material-symbols-outlined">balance</mat-icon>
           <div class="link-txt">
             <b>Personas Jurídicas</b>
@@ -45,9 +46,10 @@
         </button>
       </div>
     </div>
+
     <!-- reportes - lv0 -->
     <div class="item" *ngIf="true">
-      <button mat-button class="item-header" [title]="navOpen ? '' : 'Reportes'">
+      <button mat-button [title]="navOpen ? '' : 'Reportes'">
         <mat-icon fontSet="material-symbols-outlined">finance</mat-icon>
         <div class="link-txt" *ngIf="navOpen">
           <b>Reportes</b>
@@ -56,7 +58,7 @@
     </div>
     <!-- configuración general - lv0 -->
     <div class="item" *ngIf="true">
-      <button mat-button class="item-header" [title]="navOpen ? '' : 'Configuración General'">
+      <button mat-button [title]="navOpen ? '' : 'Configuración General'">
         <mat-icon fontSet="material-symbols-outlined">settings</mat-icon>
         <div class="link-txt" *ngIf="navOpen">
           <b>Configuración General</b>
@@ -71,10 +73,10 @@
       <div class="logo"></div>
       <div class="actions">
         <button mat-icon-button>
-          <mat-icon fontSet="material-symbols-outlined">dialpad</mat-icon>
+          <mat-icon fontSet="material-symbols-outlined">notifications</mat-icon>
         </button>
         <button mat-icon-button [matMenuTriggerFor]="usrMenu">
-          <mat-icon fontSet="material-symbols-outlined">dialpad</mat-icon>
+          <mat-icon fontSet="material-symbols-outlined">account_box</mat-icon>
         </button>
       </div>
     </div>
@@ -86,16 +88,12 @@
 </div>
 <!-- usr menu -->
 <mat-menu #usrMenu="matMenu">
-  <button mat-menu-item>
-    <mat-icon fontSet="material-symbols-outlined">dialpad</mat-icon>
-    <span>Redial</span>
-  </button>
-  <button mat-menu-item disabled>
-    <mat-icon fontSet="material-symbols-outlined">voicemail</mat-icon>
-    <span>Check voice mail</span>
-  </button>
-  <button mat-menu-item>
-    <mat-icon fontSet="material-symbols-outlined">notifications_off</mat-icon>
-    <span>Disable alerts</span>
+
+  <h3> Datos del User</h3>
+
+  <mat-divider></mat-divider>
+  <button mat-menu-item [routerLink]="['login']">
+    <mat-icon fontSet="material-symbols-outlined">logout</mat-icon>
+    <span>Salir del Sistema</span>
   </button>
 </mat-menu>

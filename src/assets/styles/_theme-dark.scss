@@ -1,19 +1,26 @@
 //colors
-$primary: #003A58;
-$accent: #66E4EE;
-$links: #008AAD;
+$primary: rgba(71, 142, 201, 1);
+$accent: rgba(125, 206, 212, 1);
+$warn:rgba(239, 83, 80, 1);
+$links: rgba(0, 172, 215, 1);
+$transparent: rgba(255, 255, 255, 0);
 
 //enviroment
-$lv-0: #353535;
-$lv-1: #2c2c2c;
-$lv-2: #121212;
+$lv-0: rgba(54, 54, 54, 1);
+$lv-1: rgba(43, 43, 43, 1);
+$lv-2: rgba(18, 18, 18, 1);
 $divider: rgba(255, 255, 255, .12);
 $hover: rgba(255, 255, 255, .22);
+$selected: rgba(71, 142, 201, .1);
+
 
 
 //text-color
-$text-primary: #003A58;
-$text-accent: #66E4EE;
-$text-main:#fff;
-$text-side:#ddd;
-$text-disabled:#bbb;
+$text-primary: rgba(71, 142, 201, 1);
+$text-over-primary: rgba(255, 255, 255, .8);
+$text-accent: rgba(125, 206, 212, 1);
+$text-over-accent: rgba(0, 0, 0, .8);
+$text-warn:rgba(239, 83, 80, 1);
+$text-main: rgba(255, 255, 255, .8);
+$text-side: rgba(255, 255, 255, .6);
+$text-disabled: rgba(255, 255, 255, .4);

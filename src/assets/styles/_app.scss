@@ -42,8 +42,52 @@ app-root {
   color: $text-main;
 
   //overrides
-  button{
-    border-radius: 0!important;
+  button {
+    &:not(.mat-mdc-icon-button) {
+      border-radius: 0 !important;
+    }
+
+    &.mat-mdc-icon-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  mat-form-field {
+    .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+      background: $lv-1;
+    }
+
+    .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
+      color: $text-main;
+
+      &::placeholder {
+        color: $text-side !important;
+      }
+    }
+
+    * {
+      color: $text-main;
+    }
+
+    &.mat-form-field-invalid {
+      * {
+        color: $text-warn;
+      }
+    }
+
+    .mdc-text-field--filled {
+      .mdc-line-ripple {
+        &::before {
+          border-bottom-color: $divider!important;
+        }
+
+        &::after {
+          border-bottom-color: $primary;
+        }
+      }
+    }
   }
 
   mat-icon {
@@ -54,5 +98,35 @@ app-root {
     display: flex !important;
     align-items: center;
     justify-content: center;
+  }
+
+
+}
+
+.mdc-menu-surface {
+  background: $lv-0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  border: 1px solid $divider;
+  padding: 16px !important;
+
+  h3 {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 12px !important;
+  }
+
+  mat-divider {
+    background: $divider !important;
+    margin-bottom: 16px;
+  }
+
+  * {
+    color: $text-main;
+  }
+
+  .mat-mdc-menu-content {
+    padding: 0;
   }
 }
