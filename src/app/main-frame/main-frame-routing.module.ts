@@ -8,7 +8,8 @@ const routes: Routes = [
     component: MainFrameComponent,
     children: [
       { path: 'admision-search', loadChildren: () => import('../admision-search/admision-search.module').then(m => m.AdmisionSearchModule) },
-      { path: '', loadChildren: () => import('../home/home.module').then(m => m.HomeModule) }
+      { path: '', loadChildren: () => import('../home/home.module').then(m => m.HomeModule) },
+      { path: 'login', redirectTo: '/login', pathMatch: 'full' } // Redirect unmatched routes to login
     ]
   }
 ];
