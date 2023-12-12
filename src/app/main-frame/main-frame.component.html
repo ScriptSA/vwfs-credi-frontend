@@ -31,20 +31,22 @@
           Admisión
         </div>
         <!-- PF - lv1 -->
-        <button mat-button class="sub-item" *ngIf="true" [routerLink]="['admision-search']" routerLinkActive="active">
+        <button mat-button class="sub-item" *ngIf="true" [routerLink]="['admision-search']" routerLinkActive="active"
+          (click)="closeSubItems()">
           <mat-icon fontSet="material-symbols-outlined">accessibility</mat-icon>
           <div class="link-txt">
             <b>Personas Físicas</b>
           </div>
         </button>
         <!-- PJ - lv1 -->
-        <button mat-button class="sub-item" *ngIf="true">
+        <button mat-button class="sub-item" *ngIf="true" (click)="closeSubItems()">
           <mat-icon fontSet="material-symbols-outlined">balance</mat-icon>
           <div class="link-txt">
             <b>Personas Jurídicas</b>
           </div>
         </button>
       </div>
+      <div class="catcher" (click)="closeSubItems()"></div>
     </div>
 
     <!-- reportes - lv0 -->
