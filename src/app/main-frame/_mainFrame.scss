@@ -246,7 +246,6 @@ app-main-frame {
 
       .main-container {
         height: calc(100% - 64px);
-        padding: 16px 32px;
         box-sizing: border-box;
         overflow: hidden;
         background: $lv-1;
@@ -305,7 +304,7 @@ app-main-frame {
           &.sub-open {
             background: $lv-0;
             height: auto;
-            /*altura maxima con transicion*/
+            //altura maxima con transicion
             max-height: 400px;
             display: block;
             transition: max-height 280ms cubic-bezier(0.4, 0, 0.2, 1);

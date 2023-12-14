@@ -1,1 +1,30 @@
-<p>admision-search works!</p>
+<div class="app-admision-search">
+  <div class="topbar">
+    <div class="title"></div>
+    <div class="search">
+      <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+        <mat-form-field >
+          <mat-icon matPrefix fontSet="material-symbols-outlined">search</mat-icon>
+          <input matInput formControlName="search" type="text" placeholder="Buscar trámites de Admisión">
+          <button mat-icon-button type="button" matSuffix>
+            <mat-icon fontSet="material-symbols-outlined">instant_mix</mat-icon>
+          </button>
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+  <mat-tab-group>
+    <mat-tab [label]="totalPendingNumber > 1 ? totalPendingNumber + ' trámites encontrados': '1 trámite encontrado'">
+      Content 1
+    </mat-tab>
+    <mat-tab *ngIf="searchResults">
+      <ng-template mat-tab-label>
+        {{resultNumber > 1 ? resultNumber + ' trámites encontrados': '1 trámite encontrado'}}
+        <button mat-icon-button (click)="removeResults()">
+          <mat-icon fontSet="material-symbols-outlined">delete</mat-icon>
+        </button>
+      </ng-template>
+      Content 2
+    </mat-tab>
+  </mat-tab-group>
+</div>
