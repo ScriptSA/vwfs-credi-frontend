@@ -7,7 +7,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
+import {MatExpansionModule} from '@angular/material/expansion';
+
 
 @NgModule({
   imports: [
@@ -19,8 +21,10 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatTabsModule
+    MatTabsModule,
+    MatExpansionModule
   ],
+
   declarations: [AdmisionSearchComponent],
 
 })

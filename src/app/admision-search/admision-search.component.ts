@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup} from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTabGroup } from '@angular/material/tabs';
 
 @Component({
@@ -8,9 +8,101 @@ import { MatTabGroup } from '@angular/material/tabs';
   styleUrls: []
 })
 export class AdmisionSearchComponent implements OnInit {
+[x: string]: any;
   //controles del resultado de la búsqueda
   searchForm: FormGroup;
   searchResults = false;
+
+  //mock tablas
+  spoolerTable = {
+    spools: [
+      {filterBy: ['sin Imágenes', 'en análisis']}
+    ],
+
+    heads: [
+      { name: ['nro de trámite', 'fecha y hora carga', 'última modificación', 'cliente', 'campaña', 'concesionario', 'monto'] }
+    ],
+
+    rows: [
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      // Agrega más dos según sea necesario
+    ]
+  }
+
+  searchTable = {
+    heads: [
+      { name: ['estado', 'nro de trámite', 'fecha y hora carga', 'última modificación', 'cliente', 'campaña', 'concesionario', 'monto'] },
+    ],
+    rows: [
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      { model: ['en análisis', '12345', '25/10/2023 12:35', '25/10/2023 12:35', 'apellido largo, muchos nombres', 'nombre de campaña', 'nombre de concesionario', '1.000.000 '] },
+      // Agrega más dos según sea necesario
+    ]
+  }
+
+
+
 
   //control de tabs
   @ViewChild(MatTabGroup) tabGroup!: MatTabGroup;
@@ -21,8 +113,7 @@ export class AdmisionSearchComponent implements OnInit {
 
   //search mock
   constructor(
-    private formBuilder: FormBuilder)
-    {
+    private formBuilder: FormBuilder) {
     this.searchForm = this.formBuilder.group({
       search: ['']
     });
@@ -32,12 +123,12 @@ export class AdmisionSearchComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.searchResults=true;
+    this.searchResults = true;
     this.tabGroup.selectedIndex = 1;
   }
 
-  removeResults(){
-    this.searchResults=false;
+  removeResults() {
+    this.searchResults = false;
   }
 
 }

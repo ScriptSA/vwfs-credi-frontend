@@ -4,6 +4,7 @@
   display: flex;
   column-gap: 1vw;
   padding: 1vw;
+  z-index: 11;
 
   button {
     background: none;
@@ -80,7 +81,7 @@ app-root {
     .mdc-text-field--filled {
       .mdc-line-ripple {
         &::before {
-          border-bottom-color: $divider!important;
+          border-bottom-color: $divider !important;
         }
 
         &::after {

@@ -20,6 +20,7 @@ app-main-frame {
       height: 100%;
       display: flex;
       flex-direction: column;
+      z-index: 10;
 
 
       .item {
@@ -59,14 +60,8 @@ app-main-frame {
           }
 
           &:hover {
-            border: 1px solid $divider;
-
             &+.item-content .sub-item-title {
               background: rgba(0, 0, 0, 0.04);
-              border-top: 1px solid $divider;
-              border-right: 1px solid $divider;
-              border-bottom: 1px solid $divider;
-
             }
           }
 
@@ -131,10 +126,6 @@ app-main-frame {
               padding: 0 24px !important;
               column-gap: 8px;
               border: 1px solid $transparent;
-
-              &:hover {
-                border: 1px solid $divider;
-              }
 
               &.active {
                 background: $selected;
