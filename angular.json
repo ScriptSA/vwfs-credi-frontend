@@ -40,16 +40,32 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "4MB",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "150kb",
+                  "maximumError": "200kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "fileReplacements": [{
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.prod.ts"
+            }]
+            },
+            "test": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [{
+                    "replace": "src/environments/environment.ts",
+                    "with": "src/environments/environment.test.ts"
+                }]
             },
             "development": {
               "buildOptimizer": false,
@@ -57,10 +73,38 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "fileReplacements": [{
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.dev.ts"
+             }]
+            },
+            "local": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [{
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.local.ts"
+             }]
+            },
+            "scriptServer": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [{
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.scriptServer.ts"
+             }]
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "scriptServer"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -70,9 +114,15 @@
             },
             "development": {
               "browserTarget": "vwfs-credi-frontend:build:development"
+            },
+            "local": {
+              "browserTarget": "vwfs-credi-frontend:build:local"
+            },
+            "scriptServer": {
+              "browserTarget": "vwfs-credi-frontend:build:scriptServer"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "scriptServer"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",

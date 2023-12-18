@@ -15,59 +15,36 @@
       Herramientas
     </div>
     <!-- admision - lv0 -->
-    <div class="item" *ngIf="true">
-      <button mat-button class="item-header" [title]="navOpen ? '' : 'abrir Admisión'" (click)="toggleSubItems($event)">
-        <mat-icon class="close" fontSet="material-symbols-outlined">folder</mat-icon>
-        <mat-icon class="open" fontSet="material-symbols-outlined">folder_open</mat-icon>
+    <div class="item" *ngFor="let menu of filterParentId0()" >
+      <button mat-button [ngClass]="{'item-header':menu.routerLink==null}" [title]="navOpen ? '' : menu.title" (click)="menu.routerLink == null?toggleSubItems($event):''">
+        <mat-icon fontSet="material-symbols-outlined">{{menu.iconName}}</mat-icon>
         <div class="link-txt" *ngIf="navOpen">
-          <b>Admisión</b>
+          <b>{{ menu.title}}</b>
         </div>
-        <mat-icon class="indicator" fontSet="material-symbols-outlined">{{navOpen ? 'expand_less' :
+        <mat-icon *ngIf="menu.routerLink == null" class="indicator" fontSet="material-symbols-outlined">{{navOpen ? 'expand_less' :
           'arrow_right'}}</mat-icon>
       </button>
-      <div class="item-content">
+
+      <div class="item-content" *ngIf="menu.routerLink == null">
         <!-- titulo(sólo menu cerrado) - lv1 -->
         <div class="sub-item-title" *ngIf="!navOpen">
-          Admisión
+          {{ menu.title}}
         </div>
         <!-- PF - lv1 -->
-        <button mat-button class="sub-item" *ngIf="true" [routerLink]="['admision-search']" routerLinkActive="active"
-          (click)="closeSubItems()">
-          <mat-icon fontSet="material-symbols-outlined">accessibility</mat-icon>
+       <button mat-button class="sub-item" *ngFor="let a of filterParentIdOfType(menu.id)" [routerLink]="[a.routerLink]" routerLinkActive="active">
+          <mat-icon fontSet="material-symbols-outlined">{{a.iconName}}</mat-icon>
           <div class="link-txt">
-            <b>Personas Físicas</b>
-          </div>
-        </button>
-        <!-- PJ - lv1 -->
-        <button mat-button class="sub-item" *ngIf="true" (click)="closeSubItems()">
-          <mat-icon fontSet="material-symbols-outlined">balance</mat-icon>
-          <div class="link-txt">
-            <b>Personas Jurídicas</b>
+            <b>{{a.title}}</b>
           </div>
         </button>
       </div>
-      <div class="catcher" (click)="closeSubItems()"></div>
+      <div class="catcher" *ngIf="menu.routerLink == null" (click)="closeSubItems()"></div>
     </div>
 
-    <!-- reportes - lv0 -->
-    <div class="item" *ngIf="true">
-      <button mat-button [title]="navOpen ? '' : 'Reportes'">
-        <mat-icon fontSet="material-symbols-outlined">finance</mat-icon>
-        <div class="link-txt" *ngIf="navOpen">
-          <b>Reportes</b>
-        </div>
-      </button>
-    </div>
-    <!-- configuración general - lv0 -->
-    <div class="item" *ngIf="true">
-      <button mat-button [title]="navOpen ? '' : 'Configuración General'">
-        <mat-icon fontSet="material-symbols-outlined">settings</mat-icon>
-        <div class="link-txt" *ngIf="navOpen">
-          <b>Configuración General</b>
-        </div>
-      </button>
-    </div>
   </div>
+
+
+
   <!-- main viewport -->
   <div class="main-content">
     <!-- top bar -->
