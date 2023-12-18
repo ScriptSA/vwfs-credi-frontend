@@ -70,11 +70,5 @@ export class MainFrameComponent implements OnInit {
       }
     }
   }
-  closeSubItems() {
-    const subsOpened = document.querySelectorAll('.item');
-    subsOpened.forEach(subsOpened => {
-      this.renderer.removeClass(subsOpened, 'sub-open');
-    });
-    this.navOpen=false;
-  }
+
 }
