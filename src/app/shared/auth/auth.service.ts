@@ -6,18 +6,18 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
   private isAuthenticated = false;
-  private currentUserRole: string | null = null;
+  private currentUserRole: string  = '';
 
   // Simulated login function
   login(username: string, password: string): boolean {
     // Simulated authentication logic (replace with your actual authentication logic)
     if (username === 'user1' && password === '1234') {
       this.isAuthenticated = true;
-      this.currentUserRole = 'user1';
+      this.currentUserRole = '1';
       return true;
     } else if (username === 'user2' && password === '123') {
       this.isAuthenticated = true;
-      this.currentUserRole = 'user2';
+      this.currentUserRole = '2';
       return true;
     }
     return false;
@@ -26,7 +26,7 @@ export class AuthService {
   // Simulated logout function
   logout(): void {
     this.isAuthenticated = false;
-    this.currentUserRole = null;
+
   }
 
   // Check if user is authenticated
@@ -35,7 +35,7 @@ export class AuthService {
   }
 
   // Get current user role
-  getCurrentUserRole(): string | null {
+  getCurrentUserRole(): string  {
     return this.currentUserRole;
   }
 }
