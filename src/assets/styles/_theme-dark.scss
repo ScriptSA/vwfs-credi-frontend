@@ -10,8 +10,11 @@ $lv-0: rgba(54, 54, 54, 1);
 $lv-1: rgba(43, 43, 43, 1);
 $lv-2: rgba(18, 18, 18, 1);
 $divider: rgba(255, 255, 255, .12);
-$hover: rgba(255, 255, 255, .22);
+$hover: rgba(255, 255, 255, .06);
+$odd: rgba(255, 255, 255, .01);
+$even: rgba(255, 255, 255, .03);
 $selected: rgba(71, 142, 201, .1);
+$ripple: $hover;
 
 
 

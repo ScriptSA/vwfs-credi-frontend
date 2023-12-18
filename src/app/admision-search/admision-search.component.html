@@ -1,1 +1,79 @@
-<p>admision-search works!</p>
+<div class="app-admision-search">
+  <div class="topbar">
+    <div class="title">
+      <mat-icon fontSet="material-symbols-outlined">accessibility</mat-icon>
+      <div class="text">
+        <div class="main">personas físicas</div>
+        <div class="side">admisión</div>
+      </div>
+    </div>
+    <div class="search">
+      <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline">
+          <mat-icon matPrefix fontSet="material-symbols-outlined">search</mat-icon>
+          <input matInput formControlName="search" type="text" placeholder="Buscar trámites de Admisión">
+          <button mat-icon-button type="button" matSuffix>
+            <mat-icon fontSet="material-symbols-outlined">instant_mix</mat-icon>
+          </button>
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+  <mat-tab-group>
+    <mat-tab [label]="totalPendingNumber > 1 ? totalPendingNumber + ' trámites encontrados': '1 trámite encontrado'">
+      <mat-accordion>
+        <ng-container *ngFor="let spool of spoolerTable.spools">
+        <mat-expansion-panel *ngFor="let filter of spool.filterBy">
+          <mat-expansion-panel-header >
+            <mat-panel-title>
+              <div class="title-content">
+                <mat-icon matPrefix fontSet="material-symbols-outlined">search</mat-icon>
+                <div class="text">
+                  <div class="main">{{filter}}</div>
+                  <div class="side">N° encontrados</div>
+                </div>
+              </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <!-- tabla a medida -->
+          <table class="custom-table">
+            <thead>
+              <tr *ngFor="let row of spoolerTable.heads">
+                <th *ngFor="let data of row.name">{{ data }}</th>
+              </tr>
+            </thead>
+            <!-- Contenido de la tabla -->
+            <tbody>
+              <tr *ngFor="let row of spoolerTable.rows">
+                <td *ngFor="let data of row.model, let results = index">{{ data }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </mat-expansion-panel>
+      </ng-container>
+      </mat-accordion>
+    </mat-tab>
+    <mat-tab *ngIf="searchResults">
+      <ng-template mat-tab-label>
+        {{resultNumber > 1 ? resultNumber + ' trámites encontrados': '1 trámite encontrado'}}
+        <button mat-icon-button (click)="removeResults()">
+          <mat-icon fontSet="material-symbols-outlined">delete</mat-icon>
+        </button>
+      </ng-template>
+      <!-- tabla a medida -->
+      <table class="custom-table">
+        <thead>
+          <tr *ngFor="let row of searchTable.heads">
+            <th *ngFor="let data of row.name">{{ data }}</th>
+          </tr>
+        </thead>
+        <!-- Contenido de la tabla -->
+        <tbody>
+          <tr *ngFor="let row of searchTable.rows">
+            <td *ngFor="let data of row.model">{{ data }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-tab>
+  </mat-tab-group>
+</div>
