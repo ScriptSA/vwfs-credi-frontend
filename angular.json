@@ -90,9 +90,21 @@
                 "replace": "src/environments/environment.ts",
                 "with": "src/environments/environment.local.ts"
              }]
+            },
+            "scriptServer": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [{
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.scriptServer.ts"
+             }]
             }
           },
-          "defaultConfiguration": "local"
+          "defaultConfiguration": "scriptServer"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -105,9 +117,12 @@
             },
             "local": {
               "browserTarget": "vwfs-credi-frontend:build:local"
+            },
+            "scriptServer": {
+              "browserTarget": "vwfs-credi-frontend:build:scriptServer"
             }
           },
-          "defaultConfiguration": "local"
+          "defaultConfiguration": "scriptServer"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
