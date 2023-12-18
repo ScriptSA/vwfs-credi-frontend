@@ -45,6 +45,14 @@ export class MainFrameComponent implements OnInit {
     this.navOpen = !this.navOpen;
   }
 
+  closeSubItems() {
+    const subsOpened = document.querySelectorAll('.item');
+    subsOpened.forEach(subsOpened => {
+      this.renderer.removeClass(subsOpened, 'sub-open');
+    });
+    this.navOpen=false;
+  }
+
   toggleSubItems(event: any) {
     const subsOpened = document.querySelectorAll('.item');
     const subClick = event.target.closest('.item');
@@ -52,7 +60,7 @@ export class MainFrameComponent implements OnInit {
 
     subsOpened.forEach(subsOpened => {
       this.renderer.removeClass(subsOpened, 'sub-open');
-    });
+    })
     if (subClick) {
       if (subActive) {
         this.renderer.removeClass(subClick, 'sub-open');
