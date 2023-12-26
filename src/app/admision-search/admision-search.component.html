@@ -23,34 +23,95 @@
     <mat-tab [label]="totalPendingNumber > 1 ? totalPendingNumber + ' trámites encontrados': '1 trámite encontrado'">
       <mat-accordion>
         <ng-container *ngFor="let spool of spoolerTable.spools">
-        <mat-expansion-panel *ngFor="let filter of spool.filterBy">
-          <mat-expansion-panel-header >
-            <mat-panel-title>
-              <div class="title-content">
-                <mat-icon matPrefix fontSet="material-symbols-outlined">search</mat-icon>
-                <div class="text">
-                  <div class="main">{{filter}}</div>
-                  <div class="side">N° encontrados</div>
+          <mat-expansion-panel *ngFor="let filter of spool.filterBy">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <div class="title-content">
+                  <mat-icon matPrefix fontSet="material-symbols-outlined">search</mat-icon>
+                  <div class="text">
+                    <div class="main">{{filter}}</div>
+                    <div class="side">N° encontrados</div>
+                  </div>
                 </div>
-              </div>
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <!-- tabla a medida -->
-          <table class="custom-table">
-            <thead>
-              <tr *ngFor="let row of spoolerTable.heads">
-                <th *ngFor="let data of row.name">{{ data }}</th>
-              </tr>
-            </thead>
-            <!-- Contenido de la tabla -->
-            <tbody>
-              <tr *ngFor="let row of spoolerTable.rows">
-                <td *ngFor="let data of row.model, let results = index">{{ data }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </mat-expansion-panel>
-      </ng-container>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <!-- tabla a medida -->
+            <!-- <table class="custom-table">
+              <thead>
+                <tr *ngFor="let row of spoolerTable.heads">
+                  <th *ngFor="let data of row.name">{{ data }}</th>
+                </tr>
+              </thead>
+              
+              <tbody>
+                <tr *ngFor="let row of spoolerTable.rows">
+                  <td *ngFor="let data of row.model, let results = index">{{ data }}</td>
+                </tr>
+              </tbody>
+            </table> -->
+                <!-- tabla a medida -->
+      <div class="table-container">
+        <mat-progress-bar *ngIf="false" mode="indeterminate"></mat-progress-bar>
+        <table mat-table [dataSource]="tramites" class="custom-table">
+
+          <!-- Estado -->
+          <ng-container matColumnDef="estado">
+            <th class="center" mat-header-cell *matHeaderCellDef hidden>estado</th>
+            <td class="center" mat-cell *matCellDef="let admision" hidden>
+              <mat-icon fontSet="material-symbols-outlined">{{admision.estado}}</mat-icon>
+            </td>
+          </ng-container>
+
+          <!-- Tramite N° -->
+          <ng-container matColumnDef="numero">
+            <th mat-header-cell *matHeaderCellDef>nro de trámite</th>
+            <td mat-cell *matCellDef="let admision"> {{admision.numero}} </td>
+          </ng-container>
+
+          <!-- Carga -->
+          <ng-container matColumnDef="carga">
+            <th mat-header-cell *matHeaderCellDef>fecha y hora carga</th>
+            <td mat-cell *matCellDef="let admision"> {{admision.carga | date:'d/M/yy, h:mm a'}} </td>
+          </ng-container>
+
+          <!-- Modificacion -->
+          <ng-container matColumnDef="modificado">
+            <th mat-header-cell *matHeaderCellDef>última modificación</th>
+            <td mat-cell *matCellDef="let admision"> {{admision.modificado | date:'d/M/yy, h:mm a'}} </td>
+          </ng-container>
+
+          <!-- Cliente -->
+          <ng-container matColumnDef="cliente">
+            <th mat-header-cell *matHeaderCellDef>cliente</th>
+            <td mat-cell *matCellDef="let admision">{{admision.cliente}}</td>
+          </ng-container>
+
+          <!-- Campaña -->
+          <ng-container matColumnDef="campania">
+            <th mat-header-cell *matHeaderCellDef>campaña</th>
+            <td mat-cell *matCellDef="let admision"> {{admision.campania}} </td>
+          </ng-container>
+
+          <!-- Concesionario -->
+          <ng-container matColumnDef="concesionario">
+            <th mat-header-cell *matHeaderCellDef>concesionario</th>
+            <td mat-cell *matCellDef="let admision"> {{admision.consesionario}} </td>
+          </ng-container>
+
+          <!-- Monto -->
+          <ng-container matColumnDef="monto">
+            <th mat-header-cell *matHeaderCellDef>monto</th>
+            <td mat-cell *matCellDef="let admision"> {{admision.monto}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columnasBusqueda; sticky: true"></tr>
+          <tr mat-row (click)="detalleTramite(row)" *matRowDef="let row; columns: columnasBusqueda"
+            [id]="'row-'+row.id">
+          </tr>
+        </table>
+      </div>
+          </mat-expansion-panel>
+        </ng-container>
       </mat-accordion>
     </mat-tab>
     <mat-tab *ngIf="searchResults">
@@ -60,20 +121,83 @@
           <mat-icon fontSet="material-symbols-outlined">delete</mat-icon>
         </button>
       </ng-template>
+
+
       <!-- tabla a medida -->
+      <div class="table-container">
+        <mat-progress-bar *ngIf="false" mode="indeterminate"></mat-progress-bar>
+        <table mat-table [dataSource]="tramites" class="custom-table">
+
+          <!-- Estado -->
+          <ng-container matColumnDef="estado">
+            <th class="center" mat-header-cell *matHeaderCellDef>estado</th>
+            <td class="center" mat-cell *matCellDef="let admision">
+              <mat-icon fontSet="material-symbols-outlined">{{admision.estado}}</mat-icon>
+            </td>
+          </ng-container>
+
+          <!-- Tramite N° -->
+          <ng-container matColumnDef="numero">
+            <th mat-header-cell *matHeaderCellDef>nro de trámite</th>
+            <td mat-cell *matCellDef="let admision"> {{admision.numero}} </td>
+          </ng-container>
+
+          <!-- Carga -->
+          <ng-container matColumnDef="carga">
+            <th mat-header-cell *matHeaderCellDef>fecha y hora carga</th>
+            <td mat-cell *matCellDef="let admision"> {{admision.carga | date:'d/M/yy, h:mm a'}} </td>
+          </ng-container>
+
+          <!-- Modificacion -->
+          <ng-container matColumnDef="modificado">
+            <th mat-header-cell *matHeaderCellDef>última modificación</th>
+            <td mat-cell *matCellDef="let admision"> {{admision.modificado | date:'d/M/yy, h:mm a'}} </td>
+          </ng-container>
+
+          <!-- Cliente -->
+          <ng-container matColumnDef="cliente">
+            <th mat-header-cell *matHeaderCellDef>cliente</th>
+            <td mat-cell *matCellDef="let admision">{{admision.cliente}}</td>
+          </ng-container>
+
+          <!-- Campaña -->
+          <ng-container matColumnDef="campania">
+            <th mat-header-cell *matHeaderCellDef>campaña</th>
+            <td mat-cell *matCellDef="let admision"> {{admision.campania}} </td>
+          </ng-container>
+
+          <!-- Concesionario -->
+          <ng-container matColumnDef="concesionario">
+            <th mat-header-cell *matHeaderCellDef>concesionario</th>
+            <td mat-cell *matCellDef="let admision"> {{admision.consesionario}} </td>
+          </ng-container>
+
+          <!-- Monto -->
+          <ng-container matColumnDef="monto">
+            <th mat-header-cell *matHeaderCellDef>monto</th>
+            <td mat-cell *matCellDef="let admision"> {{admision.monto}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columnasBusqueda; sticky: true"></tr>
+          <tr mat-row (click)="detalleTramite(row)" *matRowDef="let row; columns: columnasBusqueda"
+            [id]="'row-'+row.id">
+          </tr>
+        </table>
+      </div>
+      <!-- 
       <table class="custom-table">
         <thead>
           <tr *ngFor="let row of searchTable.heads">
             <th *ngFor="let data of row.name">{{ data }}</th>
           </tr>
         </thead>
-        <!-- Contenido de la tabla -->
+      
         <tbody>
           <tr *ngFor="let row of searchTable.rows">
             <td *ngFor="let data of row.model">{{ data }}</td>
           </tr>
         </tbody>
-      </table>
+      </table> -->
     </mat-tab>
   </mat-tab-group>
 </div>

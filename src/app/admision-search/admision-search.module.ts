@@ -8,7 +8,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatTableModule } from '@angular/material/table';
+import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -22,6 +24,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatButtonModule,
     MatIconModule,
     MatTabsModule,
+    MatTableModule,
+    MatProgressBarModule,
     MatExpansionModule
   ],
 
