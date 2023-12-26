@@ -1,20 +1,28 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SysMsgrComponent } from './shared/sys-msgr/sys-msgr.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { HttpClientModule  } from '@angular/common/http';
+import { AppConfig, ConfigModule } from './app.config';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SysMsgrComponent,
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSnackBarModule,
+    HttpClientModule,
   ],
-  providers: [],
+
+  providers: [SysMsgrComponent, AppConfig,ConfigModule.init()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
