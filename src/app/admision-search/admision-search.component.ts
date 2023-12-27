@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTabGroup } from '@angular/material/tabs';
 import { Admision } from '../shared/models/admision';
+import { AdmisionSearchService } from '../shared/services/admision-search.service';
 
 @Component({
   selector: 'app-admision-search',
@@ -17,9 +18,12 @@ export class AdmisionSearchComponent implements OnInit {
   tramites: Admision[] = [];
   selectedTramite?: Admision;
   loading = false;
+  statusIcon = {'APROBADO':'task_alt','NOEF':'pending'}
+  mapIcon:any =  new Map(Object.entries(this.statusIcon));
+
 
   detalleTramite(row: Admision) {
-    console.log(row);
+    console.log(row.nroTramite);
   }
 
   //mock tablas
@@ -39,7 +43,7 @@ export class AdmisionSearchComponent implements OnInit {
 
   //search mock
   constructor(
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,private admisionSearch:AdmisionSearchService) {
     this.searchForm = this.formBuilder.group({
       search: ['']
     });
@@ -48,9 +52,11 @@ export class AdmisionSearchComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(): void {
+  async onSubmit() {
     this.searchResults = true;
     this.tabGroup.selectedIndex = 1;
+    let searchValue = this.searchForm.get('search')?.value;
+    this.tramites = await this.admisionSearch.getTramiteWithFilter(searchValue);
   }
 
   removeResults() {

@@ -1,11 +1,10 @@
 export interface Admision {
-  id: string;
-  estado: string;
-  numero: string;
-  carga: Date;
-  modificado: Date;
+  estadoLD: string;
+  nroTramite: string;
+  fhCarga: string;
+  fhUltMod: string;
   cliente: string;
-  campania: string;
-  concesionario: string;
-  monto: string;
+  campComDescr: string;
+  razonSocial: string;
+  montoCapital: string;
 }
