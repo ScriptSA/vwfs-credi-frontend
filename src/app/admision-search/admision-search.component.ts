@@ -64,10 +64,10 @@ export class AdmisionSearchComponent implements OnInit {
     this.searchResults = false;
   }
 
-  
-  detalleTramite(row: Admision) {
+
+  detalleTramite(row: Admision): void  {
     console.log(row.nroTramite);
-    this.route.navigate(['/admision-detail']);
+    this.route.navigate(['admision-detail']);
 
   }
 
