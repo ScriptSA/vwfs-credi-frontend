@@ -1,5 +1,4 @@
-import { Component, Renderer2,OnInit } from '@angular/core';
-//import { AuthService } from '../shared/auth/auth.service';
+import { Component, Renderer2, OnInit } from '@angular/core';
 import { MainFrameService } from '../shared/services/mainFrame.service';
 import { AuthService } from '../shared/auth/auth.service';
 import { Menu } from '../shared/models/menu.model';
@@ -11,33 +10,29 @@ import { Menu } from '../shared/models/menu.model';
 })
 export class MainFrameComponent implements OnInit {
   // mock login
-  //isUser1LoggedIn: boolean;
-  //isUser2LoggedIn: boolean;
-  userId: string  ='';
-   //select Options
+  userId: string = '';
+
+  //select Options
   menuList: Menu[] = [];
 
   //navbar toggle
   navOpen = false;
 
-  constructor(private mainFrame: MainFrameService,private authService:AuthService, private renderer: Renderer2) {
-    //this.isUser1LoggedIn = this.authService.getCurrentUserRole() === 'user1';
-    //this.isUser2LoggedIn = this.authService.getCurrentUserRole() === 'user2';
+  constructor(private mainFrame: MainFrameService, private authService: AuthService, private renderer: Renderer2) {
     this.userId = this.authService.getCurrentUserRole();
-
   }
-  async ngOnInit(): Promise<void> {
 
+  async ngOnInit(): Promise<void> {
     const menus = await this.mainFrame.getMenuData(this.userId);
     this.menuList = menus.data;
-    console.log(this.menuList)
+    console.log(this.menuList);
   }
 
-  filterParentIdOfType(id:any){
+  filterParentIdOfType(id: any) {
     return this.menuList.filter(x => x.parentId == id);
   }
 
-  filterParentId0(){
+  filterParentId0() {
     return this.menuList.filter(x => x.parentId == 0);
   }
 
@@ -50,7 +45,7 @@ export class MainFrameComponent implements OnInit {
     subsOpened.forEach(subsOpened => {
       this.renderer.removeClass(subsOpened, 'sub-open');
     });
-    this.navOpen=false;
+    this.navOpen = false;
   }
 
   toggleSubItems(event: any) {
