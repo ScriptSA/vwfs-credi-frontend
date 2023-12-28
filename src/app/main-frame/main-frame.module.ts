@@ -8,6 +8,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
+  declarations: [MainFrameComponent],
+
   imports: [
     CommonModule,
     MainFrameRoutingModule,
@@ -15,7 +17,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatIconModule,
     MatMenuModule,
     MatDividerModule
-  ],
-  declarations: [MainFrameComponent],
+  ]
+  
 })
 export class MainFrameModule { }

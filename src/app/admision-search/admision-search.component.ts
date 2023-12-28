@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTabGroup } from '@angular/material/tabs';
 import { Admision } from '../shared/models/admision';
 import { AdmisionSearchService } from '../shared/services/admision-search.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admision-search',
@@ -18,13 +19,10 @@ export class AdmisionSearchComponent implements OnInit {
   tramites: Admision[] = [];
   selectedTramite?: Admision;
   loading = false;
-  statusIcon = {'APROBADO':'task_alt','NOEF':'pending'}
-  mapIcon:any =  new Map(Object.entries(this.statusIcon));
+  statusIcon = { 'APROBADO': 'task_alt', 'NOEF': 'pending' }
+  mapIcon: any = new Map(Object.entries(this.statusIcon));
 
 
-  detalleTramite(row: Admision) {
-    console.log(row.nroTramite);
-  }
 
   //mock tablas
   spoolerTable = {
@@ -38,15 +36,17 @@ export class AdmisionSearchComponent implements OnInit {
   @ViewChild(MatTabGroup) tabGroup!: MatTabGroup;
 
   //mock titulo tramites (hay que hacer el count)
-  totalPendingNumber = 20;
-  resultNumber = 2;
+  totalPendingNumber = 0;
+  resultNumber = 0;
 
   //search mock
   constructor(
-    private formBuilder: FormBuilder,private admisionSearch:AdmisionSearchService) {
-    this.searchForm = this.formBuilder.group({
-      search: ['']
-    });
+    private formBuilder: FormBuilder,
+    private admisionSearch: AdmisionSearchService,
+    private route: Router,) {
+      this.searchForm = this.formBuilder.group({
+        search: ['']
+      });
   }
 
   ngOnInit(): void {
@@ -57,10 +57,20 @@ export class AdmisionSearchComponent implements OnInit {
     this.tabGroup.selectedIndex = 1;
     let searchValue = this.searchForm.get('search')?.value;
     this.tramites = await this.admisionSearch.getTramiteWithFilter(searchValue);
+    this.resultNumber = this.tramites.length;
   }
 
   removeResults() {
     this.searchResults = false;
   }
 
+  
+  detalleTramite(row: Admision) {
+    console.log(row.nroTramite);
+    this.route.navigate(['/admision-detail']);
+
+  }
+
 }
+
+

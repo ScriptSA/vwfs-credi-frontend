@@ -7,11 +7,13 @@ import { SysMsgrComponent } from './shared/sys-msgr/sys-msgr.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule  } from '@angular/common/http';
 import { AppConfig, ConfigModule } from './app.config';
+import { CustomCapitalizePipe } from './shared/pipes/custom-capitalize.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     SysMsgrComponent,
+    
   ],
 
   imports: [
