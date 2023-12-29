@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
       if (loggedIn) {
         //successful login
         this.snackbar.openSnackbar('Ingresaste', 5000);
-        this.route.navigate(['/main-frame']);
+        this.route.navigateByUrl('/main-frame');
 
       } else {
         //bad login

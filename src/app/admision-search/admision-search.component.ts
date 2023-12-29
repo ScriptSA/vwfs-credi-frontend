@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: []
 })
 export class AdmisionSearchComponent implements OnInit {
+
   [x: string]: any;
   //controles del resultado de la búsqueda
   searchForm: FormGroup;
@@ -22,15 +23,12 @@ export class AdmisionSearchComponent implements OnInit {
   statusIcon = { 'APROBADO': 'task_alt', 'NOEF': 'pending' }
   mapIcon: any = new Map(Object.entries(this.statusIcon));
 
-
-
   //mock tablas
   spoolerTable = {
     spools: [
       { filterBy: ['sin Imágenes', 'en análisis'] }
     ]
   }
-
 
   //control de tabs
   @ViewChild(MatTabGroup) tabGroup!: MatTabGroup;
@@ -43,7 +41,7 @@ export class AdmisionSearchComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private admisionSearch: AdmisionSearchService,
-    private route: Router,) {
+    private route: Router) {
       this.searchForm = this.formBuilder.group({
         search: ['']
       });
@@ -53,10 +51,11 @@ export class AdmisionSearchComponent implements OnInit {
   }
 
   async onSubmit() {
-    this.searchResults = true;
-    this.tabGroup.selectedIndex = 1;
     let searchValue = this.searchForm.get('search')?.value;
     this.tramites = await this.admisionSearch.getTramiteWithFilter(searchValue);
+
+    this.searchResults = true;
+    this.tabGroup.selectedIndex = 1;
     this.resultNumber = this.tramites.length;
   }
 
@@ -64,13 +63,10 @@ export class AdmisionSearchComponent implements OnInit {
     this.searchResults = false;
   }
 
-  
-  detalleTramite(row: Admision) {
+  detalleTramite(row: Admision): void  {
     console.log(row.nroTramite);
-    this.route.navigate(['/admision-detail']);
-
+    this.route.navigateByUrl(`main-frame/admision-search/admision-detail/${row.nroTramite}`);
   }
-
 }
 
 

@@ -3,17 +3,17 @@ import { CommonModule } from '@angular/common';
 import { AdmisionDetailComponent } from './admision-detail.component';
 import { AdmisionDetailRoutingModule } from '../admision-detail/admision-detail-routing.module';
 import { MatButtonModule } from '@angular/material/button';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
-import { CustomCapitalizePipe } from '../shared/pipes/custom-capitalize.pipe';
+import { LegajoModule } from './legajo/legajo.module';
+import { TareasModule } from './tareas/tareas.module';
+import { PersonaModule } from './persona/persona.module';
+import { DatosModule } from './datos/datos.module';
 
 @NgModule({
   declarations: [
-    AdmisionDetailComponent,
-    CustomCapitalizePipe
+    AdmisionDetailComponent
   ],
 
   imports: [
@@ -22,9 +22,11 @@ import { CustomCapitalizePipe } from '../shared/pipes/custom-capitalize.pipe';
     MatButtonModule,
     MatIconModule,
     MatTabsModule,
-    MatTableModule,
     MatProgressBarModule,
-    MatExpansionModule
+    LegajoModule,
+    TareasModule,
+    PersonaModule,
+    DatosModule
   ]
 })
 

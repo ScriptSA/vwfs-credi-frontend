@@ -7,6 +7,166 @@ app-root {
   color: $text-main;
 }
 
+//modules frame
+.app-frame {
+  height: calc(100vh - 64px);
+
+  .topbar {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 32px;
+    column-gap: 32px;
+
+
+    .title {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      column-gap: 16px;
+      width: 50%;
+
+      .avatar {
+        height: 48px;
+        width: 48px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        mat-icon {
+          color: $text-primary;
+          font-size: 32px !important;
+          font-weight: bold;
+        }
+      }
+
+      .text {
+        display: flex;
+        flex-direction: column;
+
+        * {
+          text-transform: uppercase;
+        }
+
+        .main {
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 22px;
+          color: $text-primary;
+        }
+
+        .side {
+          line-height: 16px;
+          color: $text-side;
+        }
+      }
+    }
+
+
+    .search {
+      width: 50%;
+
+      mat-form-field {
+        width: 100%;
+        position: relative;
+
+
+        .mat-mdc-form-field-flex {
+          background: $lv-0;
+
+          .mdc-notched-outline * {
+            border-color: $divider !important;
+            border-radius: 0 !important;
+          }
+        }
+
+        &:hover {
+          &:before {
+            background: $ripple !important;
+            content: "";
+            position: absolute;
+            pointer-events: none;
+            height: 100%;
+            width: 100%;
+            z-index: 1;
+          }
+        }
+
+        &.mat-focused {
+          .mat-mdc-form-field-flex {
+            background: $selected !important;
+
+            .mat-mdc-form-field-icon-prefix {
+              mat-icon {
+                color: $text-primary !important;
+              }
+            }
+
+            .mdc-notched-outline * {
+              border-color: $selected !important;
+            }
+          }
+
+          &:hover {
+            &:before {
+              background: none !important;
+            }
+          }
+        }
+
+        .mat-mdc-form-field-subscript-wrapper {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+//info
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+ 
+
+  mat-icon {
+    font-size: 22vh !important;
+    line-height: 20vh !important;
+    height: 20vh !important;
+    width: 20vh !important;
+    color: $text-side;
+  }
+
+  h2 {
+    margin: 0 !important;
+    font-size: 4vh !important;
+    line-height: 4.5vh !important;
+    color: $text-main;
+  }
+
+  h5 {
+    margin: 0 !important;
+    font-size: 2vh !important;
+    line-height: 3vh !important;
+    color: $text-side;
+  }
+
+  &.primary{
+    mat-icon {
+      color: $text-primary!important;
+    }
+  
+    h2 {
+      color: $text-primary!important;
+    }
+  }
+  
+}
+
 ////////////
 //overrides
 ////////////
@@ -144,6 +304,15 @@ mat-icon {
       .mat-mdc-tab-body-content {
         padding-bottom: 32px;
         box-sizing: border-box;
+      }
+    }
+  }
+
+  &.uppercase {
+    mat-tab-header {
+      * {
+        text-transform: uppercase;
+        letter-spacing: 0;
       }
     }
   }

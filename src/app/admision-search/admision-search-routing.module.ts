@@ -5,7 +5,9 @@ import { AdmisionSearchComponent } from './admision-search.component';
 const routes: Routes = [
   {
     path: '',
-    component: AdmisionSearchComponent
+    component: AdmisionSearchComponent,
+    children:[
+    ]
   }
 ];
 

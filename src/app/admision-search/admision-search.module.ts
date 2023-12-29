@@ -11,12 +11,13 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatExpansionModule } from '@angular/material/expansion';
-import { CustomCapitalizePipe } from '../shared/pipes/custom-capitalize.pipe';
+import { PipesModule } from '../shared/modules/pipes.module';
+import { InfoModule } from '../shared/modules/info.module';
+
 
 @NgModule({
   declarations: [
-    AdmisionSearchComponent,
-    CustomCapitalizePipe
+    AdmisionSearchComponent
   ],
 
   imports: [
@@ -32,6 +33,8 @@ import { CustomCapitalizePipe } from '../shared/pipes/custom-capitalize.pipe';
     MatTableModule,
     MatProgressBarModule,
     MatExpansionModule,
+    PipesModule,
+    InfoModule
   ]
 })
 
