@@ -8,8 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
-import { SharedModule } from '../shared/SharedModule';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PipesModule } from '../shared/modules/pipes.module';
 
 @NgModule({
   declarations: [
@@ -19,15 +18,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     AdmisionDetailRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
     MatButtonModule,
     MatIconModule,
     MatTabsModule,
     MatTableModule,
     MatProgressBarModule,
     MatExpansionModule,
-    SharedModule
+    PipesModule
   ]
 })
 

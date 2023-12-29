@@ -10,13 +10,13 @@ import { ActivatedRoute } from '@angular/router';
 
 export class AdmisionDetailComponent {
   //test id navigation
-  nroTramite: number | undefined;
+  nroTramite: string | undefined;
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.nroTramite = +params['nroTramite']; // Get the ID from route parameters
+      this.nroTramite = params['nroTramite']; // Get the ID from route parameters
       console.log(this.nroTramite);
       // Use this.id to fetch specific data or perform actions based on the ID
     });

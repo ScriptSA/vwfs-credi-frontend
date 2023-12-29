@@ -7,7 +7,6 @@ const routes: Routes = [
     path: '',
     component: AdmisionSearchComponent,
     children:[
-      { path: 'admision-detail', loadChildren: () => import('../admision-detail/admision-detail.module').then(m => m.AdmisionDetailModule) },
     ]
   }
 ];

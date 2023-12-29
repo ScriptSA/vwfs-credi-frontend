@@ -10,7 +10,7 @@ const routes: Routes = [
       { path: '', loadChildren: () => import('../home/home.module').then(m => m.HomeModule) },
       { path: 'login', redirectTo: '/login', pathMatch: 'full' } ,// Redirect unmatched routes to login
       { path: 'admision-search', loadChildren: () => import('../admision-search/admision-search.module').then(m => m.AdmisionSearchModule) },
-
+      { path: 'admision-search/admision-detail/:nroTramite', loadChildren: () => import('../admision-detail/admision-detail.module').then(m => m.AdmisionDetailModule) },
     ]
   }
 ];

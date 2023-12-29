@@ -22,15 +22,12 @@ export class AdmisionSearchComponent implements OnInit {
   statusIcon = { 'APROBADO': 'task_alt', 'NOEF': 'pending' }
   mapIcon: any = new Map(Object.entries(this.statusIcon));
 
-
-
   //mock tablas
   spoolerTable = {
     spools: [
       { filterBy: ['sin Imágenes', 'en análisis'] }
     ]
   }
-
 
   //control de tabs
   @ViewChild(MatTabGroup) tabGroup!: MatTabGroup;
@@ -64,13 +61,10 @@ export class AdmisionSearchComponent implements OnInit {
     this.searchResults = false;
   }
 
-
   detalleTramite(row: Admision): void  {
     console.log(row.nroTramite);
-    this.route.navigate(['admision-detail']);
-
+    this.route.navigateByUrl(`main-frame/admision-search/admision-detail/${row.nroTramite}`);
   }
-
 }
 
 
