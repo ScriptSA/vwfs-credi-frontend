@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component} from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -12,7 +12,7 @@ export class AdmisionDetailComponent {
   //test id navigation
   nroTramite: string | undefined;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,  private routing: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -20,5 +20,9 @@ export class AdmisionDetailComponent {
       console.log(this.nroTramite);
       // Use this.id to fetch specific data or perform actions based on the ID
     });
+  }
+
+  volverAdmision(): void  {
+    this.routing.navigateByUrl(`main-frame/admision-search`);
   }
 }

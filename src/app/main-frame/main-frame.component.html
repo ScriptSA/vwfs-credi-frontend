@@ -1,6 +1,8 @@
 <div class="app-container" [ngClass]="{'side-open' : navOpen}">
+
   <!-- sidebar -->
   <div class="sidenav">
+
     <!-- sidebar-toggle -->
     <div class="item" [title]="navOpen ? '' : 'abrir Menú'">
       <button mat-button (click)="toggleNav()">
@@ -10,18 +12,22 @@
         </div>
       </button>
     </div>
+
     <!-- titulo(sólo menu abierto) - lv0 -->
     <div class="sidenav-title">
       Herramientas
     </div>
-    <!-- admision - lv0 -->
-    <div class="item" *ngFor="let menu of filterParentId0()" >
-      <button mat-button [ngClass]="{'item-header':menu.routerLink==null}" [title]="navOpen ? '' : menu.title" (click)="menu.routerLink == null?toggleSubItems($event):''">
+
+    <!-- lv0 -->
+    <div class="item" *ngFor="let menu of filterParentId0()">
+      <button mat-button [ngClass]="{'item-header':menu.routerLink==null}" [title]="navOpen ? '' : menu.title"
+        (click)="menu.routerLink == null?toggleSubItems($event):''">
         <mat-icon fontSet="material-symbols-outlined">{{menu.iconName}}</mat-icon>
         <div class="link-txt" *ngIf="navOpen">
           <b>{{ menu.title}}</b>
         </div>
-        <mat-icon *ngIf="menu.routerLink == null" class="indicator" fontSet="material-symbols-outlined">{{navOpen ? 'expand_less' :
+        <mat-icon *ngIf="menu.routerLink == null" class="indicator" fontSet="material-symbols-outlined">{{navOpen ?
+          'expand_less' :
           'arrow_right'}}</mat-icon>
       </button>
 
@@ -30,8 +36,10 @@
         <div class="sub-item-title" *ngIf="!navOpen">
           {{ menu.title}}
         </div>
-        <!-- PF - lv1 -->
-       <button mat-button class="sub-item" *ngFor="let a of filterParentIdOfType(menu.id)" [routerLink]="[a.routerLink]" routerLinkActive="active">
+
+        <!-- lv1 -->
+        <button mat-button class="sub-item" *ngFor="let a of filterParentIdOfType(menu.id)"
+          [routerLink]="[a.routerLink]" routerLinkActive="active">
           <mat-icon fontSet="material-symbols-outlined">{{a.iconName}}</mat-icon>
           <div class="link-txt">
             <b>{{a.title}}</b>
@@ -40,13 +48,11 @@
       </div>
       <div class="catcher" *ngIf="menu.routerLink == null" (click)="closeSubItems()"></div>
     </div>
-
   </div>
-
-
 
   <!-- main viewport -->
   <div class="main-content">
+
     <!-- top bar -->
     <div class="toolbar">
       <div class="logo"></div>
@@ -59,17 +65,19 @@
         </button>
       </div>
     </div>
+
+    <!-- |||||||||| -->
     <!-- app-render -->
+    <!-- |||||||||| -->
     <div class="main-container">
       <router-outlet></router-outlet>
     </div>
   </div>
 </div>
+
 <!-- usr menu -->
 <mat-menu #usrMenu="matMenu">
-
   <h3> Datos del User</h3>
-
   <mat-divider></mat-divider>
   <button mat-menu-item [routerLink]="['login']">
     <mat-icon fontSet="material-symbols-outlined">logout</mat-icon>

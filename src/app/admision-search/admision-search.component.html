@@ -1,7 +1,12 @@
-<div class="app-admision-search">
+<!-- marco modulo -->
+<div class="app-frame">
+
+  <!-- titulo modulo -->
   <div class="topbar">
     <div class="title">
-      <mat-icon fontSet="material-symbols-outlined">accessibility</mat-icon>
+      <div class="avatar">
+        <mat-icon fontSet="material-symbols-outlined">accessibility</mat-icon>
+      </div>
       <div class="text">
         <div class="main">personas físicas</div>
         <div class="side">admisión</div>
@@ -11,7 +16,7 @@
       <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="outline">
           <mat-icon matPrefix fontSet="material-symbols-outlined">search</mat-icon>
-          <input matInput formControlName="search" type="text" placeholder="Buscar trámites de Admisión">
+          <input matInput formControlName="search" type="text" placeholder="Buscar trámites por número">
           <button mat-icon-button type="button" matSuffix>
             <mat-icon fontSet="material-symbols-outlined">instant_mix</mat-icon>
           </button>
@@ -20,8 +25,13 @@
     </div>
   </div>
   <mat-tab-group class="custom-tab-group">
-    <mat-tab [label]="totalPendingNumber > 1 ? totalPendingNumber + ' trámites encontrados': '1 trámite encontrado'">
-      <mat-accordion class="custom-accordion">
+
+    <!-- tab colas -->
+    <mat-tab
+      [label]="totalPendingNumber > 1 ? totalPendingNumber + ' trámites encontrados': (totalPendingNumber == 1 ?'1 trámite encontrado':'Sin trámites')">
+
+      <!-- colas -->
+      <mat-accordion class="custom-accordion" *ngIf="totalPendingNumber > 1">
         <ng-container *ngFor="let spool of spoolerTable.spools">
           <mat-expansion-panel *ngFor="let filter of spool.filterBy">
             <mat-expansion-panel-header>
@@ -100,11 +110,18 @@
           </mat-expansion-panel>
         </ng-container>
       </mat-accordion>
+
+      <!-- info: sin colas -->
+      <app-info [class]="'primary'" [icon]="'indeterminate_question_box'" [mainText]="'No hay trámites aquí'"
+        [sideText]="'Intenta hacer una búsqueda'"></app-info>
+
     </mat-tab>
 
+    <!-- tab resultados busqueda -->
     <mat-tab *ngIf="searchResults">
       <ng-template mat-tab-label>
-        {{resultNumber > 1 ? resultNumber + ' trámites encontrados': '1 trámite encontrado'}}
+        {{resultNumber > 1 ? resultNumber + ' trámites encontrados':
+        (resultNumber == 1 ?'1 trámite encontrado':'Sin trámites')}}
         <button mat-icon-button (click)="removeResults()">
           <mat-icon fontSet="material-symbols-outlined">delete</mat-icon>
         </button>

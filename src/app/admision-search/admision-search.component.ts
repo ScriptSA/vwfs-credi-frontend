@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: []
 })
 export class AdmisionSearchComponent implements OnInit {
+
   [x: string]: any;
   //controles del resultado de la búsqueda
   searchForm: FormGroup;
@@ -40,7 +41,7 @@ export class AdmisionSearchComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private admisionSearch: AdmisionSearchService,
-    private route: Router,) {
+    private route: Router) {
       this.searchForm = this.formBuilder.group({
         search: ['']
       });
@@ -50,10 +51,11 @@ export class AdmisionSearchComponent implements OnInit {
   }
 
   async onSubmit() {
-    this.searchResults = true;
-    this.tabGroup.selectedIndex = 1;
     let searchValue = this.searchForm.get('search')?.value;
     this.tramites = await this.admisionSearch.getTramiteWithFilter(searchValue);
+
+    this.searchResults = true;
+    this.tabGroup.selectedIndex = 1;
     this.resultNumber = this.tramites.length;
   }
 

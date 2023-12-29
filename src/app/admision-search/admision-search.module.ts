@@ -12,6 +12,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatExpansionModule } from '@angular/material/expansion';
 import { PipesModule } from '../shared/modules/pipes.module';
+import { InfoModule } from '../shared/modules/info.module';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { PipesModule } from '../shared/modules/pipes.module';
     MatProgressBarModule,
     MatExpansionModule,
     PipesModule,
+    InfoModule
   ]
 })
 

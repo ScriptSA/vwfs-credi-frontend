@@ -1,1 +1,42 @@
-<p>admision-detail works!</p>
+<!-- marco modulo -->
+<div class="app-frame">
+
+    <!-- titulo modulo -->
+    <div class="topbar">
+        <div class="title">
+            <div class="avatar">
+                <button mat-icon-button (click)="volverAdmision()">
+                    <mat-icon fontSet="material-symbols-outlined">arrow_back</mat-icon>
+                </button>
+            </div>
+            <div class="text">
+                <div class="main">Nombre Del Titular</div>
+                <div class="side">Trámite N° {{nroTramite}}</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- tabs detalle-->
+    <mat-tab-group class="custom-tab-group uppercase">
+
+        <!-- tab listado -->
+        <mat-tab label="listado tareas">
+            <app-tareas></app-tareas>
+        </mat-tab>
+
+        <!-- tab datos persona -->
+        <mat-tab label="datos persona">
+            <app-persona></app-persona>
+        </mat-tab>
+
+        <!-- tab datos trámite -->
+        <mat-tab label="datos trámite">
+            <app-datos></app-datos>
+        </mat-tab>
+
+        <!-- tab legajo -->
+        <mat-tab label="legajo digital">
+            <app-legajo></app-legajo>
+        </mat-tab>
+    </mat-tab-group>
+</div>
