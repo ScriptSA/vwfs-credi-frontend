@@ -8,6 +8,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableModule } from '@angular/material/table';
 import { PipesModule } from '../../shared/modules/pipes.module';
 import { InfoModule } from '../../shared/modules/info.module';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { InfoModule } from '../../shared/modules/info.module';
     CommonModule,
     MatButtonModule,
     MatIconModule,
+    MatTabsModule,
     MatTableModule,
     MatProgressBarModule,
     MatExpansionModule,

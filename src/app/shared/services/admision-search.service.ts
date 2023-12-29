@@ -12,7 +12,7 @@ import { Admision } from '../models/admision';
 export class AdmisionSearchService {
 
   baseBackendUrl = AppConfig.settings?.backendBaseUrl;
-  tramiteUrl = '/v1/tramite/findByTramite';
+  tramiteUrl = '/v1/tramite/findResumenTramite';
 
   constructor(private http: HttpClient, private router: Router) {}
 

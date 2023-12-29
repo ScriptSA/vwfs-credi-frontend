@@ -1,1 +1,40 @@
-Aqui van los requisitos
+ <!-- tabla a medida -->
+ <div class="table-container">
+  <mat-progress-bar *ngIf="false" mode="indeterminate"></mat-progress-bar>
+  <table mat-table [dataSource]="requisitos" class="custom-table">
+
+
+    <!-- Requisito N° -->
+    <ng-container matColumnDef="requisito">
+      <th mat-header-cell *matHeaderCellDef>Requisito</th>
+      <td mat-cell *matCellDef="let requisito"> {{requisito.requisito}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tipoRequisito">
+      <th mat-header-cell *matHeaderCellDef>Tipo De Requisito</th>
+      <td mat-cell *matCellDef="let requisito"> {{requisito.tipoRequisito}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="estado">
+      <th mat-header-cell *matHeaderCellDef>Estado</th>
+      <td mat-cell *matCellDef="let requisito"> {{requisito.estado}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="digital">
+      <th mat-header-cell *matHeaderCellDef>Digital</th>
+      <td mat-cell *matCellDef="let requisito"> {{requisito.digital}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="idThuban">
+      <th class="center" mat-header-cell *matHeaderCellDef hidden>IdT huban</th>
+      <td class="center" mat-cell *matCellDef="let requisito" hidden>
+        {{requisito.idThuban}}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnas; sticky: true"></tr>
+    <tr mat-row (click)="verRequisito(row)" *matRowDef="let row; columns: columnas"
+      [id]="'row-'+row.id">
+  </tr>
+  </table>
+  </div>
