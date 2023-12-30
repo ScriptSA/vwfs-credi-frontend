@@ -10,6 +10,7 @@ app-root {
 //modules frame
 .app-frame {
   height: calc(100vh - 64px);
+  width: 100%;
 
   .topbar {
     height: 80px;
@@ -19,7 +20,6 @@ app-root {
     padding: 0 32px;
     column-gap: 32px;
 
-
     .title {
       display: flex;
       justify-content: flex-start;
@@ -27,17 +27,11 @@ app-root {
       column-gap: 16px;
       width: 50%;
 
-      .avatar {
-        height: 48px;
+      .action {
         width: 48px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
 
         mat-icon {
-          color: $text-primary;
-          font-size: 32px !important;
-          font-weight: bold;
+          color: $text-primary !important;
         }
       }
 
@@ -63,6 +57,19 @@ app-root {
       }
     }
 
+    .action {
+      height: 48px;
+      width: unset;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      mat-icon {
+        color: $text-main;
+        font-size: 32px !important;
+        font-weight: bold;
+      }
+    }
 
     .search {
       width: 50%;
@@ -123,15 +130,31 @@ app-root {
   }
 }
 
-//info
+//buttons
+.lg-btn {
+  height: 100% !important;
 
+  .btn-content {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    padding: 0 0 0 8px;
+
+    .text {
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+  }
+}
+
+//info
 .info {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
- 
+
 
   mat-icon {
     font-size: 22vh !important;
@@ -155,16 +178,16 @@ app-root {
     color: $text-side;
   }
 
-  &.primary{
+  &.primary {
     mat-icon {
-      color: $text-primary!important;
+      color: $text-primary !important;
     }
-  
+
     h2 {
-      color: $text-primary!important;
+      color: $text-primary !important;
     }
   }
-  
+
 }
 
 ////////////

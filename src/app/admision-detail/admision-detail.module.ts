@@ -10,6 +10,7 @@ import { LegajoModule } from './legajo/legajo.module';
 import { TareasModule } from './tareas/tareas.module';
 import { PersonaModule } from './persona/persona.module';
 import { DatosModule } from './datos/datos.module';
+import { HistoriaModule } from './historia/historia.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { DatosModule } from './datos/datos.module';
     LegajoModule,
     TareasModule,
     PersonaModule,
-    DatosModule
+    DatosModule,
+    HistoriaModule
   ]
 })
 

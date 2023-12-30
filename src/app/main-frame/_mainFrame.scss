@@ -209,6 +209,7 @@ app-main-frame {
       width: 100vw;
       padding-left: 64px;
       transition: padding-left 280ms cubic-bezier(0.4, 0, 0.2, 1);
+      box-sizing: border-box;
 
       .toolbar {
         background: $primary;
@@ -342,7 +343,6 @@ app-main-frame {
 
       .main-content {
         padding-left: 320px;
-        transition: padding-left;
         transition: padding-left 280ms cubic-bezier(0.4, 0, 0.2, 1);
       }
     }

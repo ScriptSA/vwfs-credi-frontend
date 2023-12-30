@@ -12,6 +12,9 @@ export class AdmisionDetailComponent {
   //test id navigation
   nroTramite: string | undefined;
 
+  //detalle abierto
+  historyOpen = false;
+
   constructor(private route: ActivatedRoute,  private routing: Router) { }
 
   ngOnInit(): void {
@@ -24,5 +27,9 @@ export class AdmisionDetailComponent {
 
   volverAdmision(): void  {
     this.routing.navigateByUrl(`main-frame/admision-search`);
+  }
+
+  toggleHistory() {
+    this.historyOpen =! this.historyOpen
   }
 }
