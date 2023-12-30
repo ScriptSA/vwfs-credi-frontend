@@ -64,7 +64,6 @@ export class AdmisionSearchComponent implements OnInit {
   }
 
   detalleTramite(row: Admision): void  {
-    console.log(row.nroTramite);
     this.route.navigateByUrl(`main-frame/admision-search/admision-detail/${row.nroTramite}`);
   }
 }
