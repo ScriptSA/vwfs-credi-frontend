@@ -16,7 +16,7 @@
         </div>
 
         <div class="action" *ngIf="!historyOpen">
-            <button mat-stroked-button class="lg-btn" (click)="toggleHistory()">
+            <button mat-stroked-button class="lg-btn outlined" (click)="toggleHistory()">
                 <div class="btn-content">
                     <span class="text">abrir historia</span>
                     <mat-icon fontSet="material-symbols-outlined">history</mat-icon>
@@ -26,7 +26,7 @@
     </div>
 
     <!-- tabs detalle-->
-    <mat-tab-group class="custom-tab-group uppercase">
+    <mat-tab-group class="custom-tab-group uppercase"  [(selectedIndex)]="selectedTabIndex">
 
         <!-- tab listado -->
         <mat-tab label="listado tareas">

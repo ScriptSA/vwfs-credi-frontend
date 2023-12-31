@@ -9,9 +9,7 @@ body {
   margin: 0;
   font-family: $main_font;
   overflow: hidden;
-
 }
-
 
 [data-theme='light'] {
   @import './assets/styles/theme-light';
@@ -25,7 +23,6 @@ body {
   #lightThemeBtn {
     display: none;
   }
-
 }
 
 [data-theme='dark'] {

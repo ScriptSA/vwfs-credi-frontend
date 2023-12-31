@@ -1,4 +1,5 @@
 export interface Requisito {
+  position: number;
   requisito: string;
   tipoRequisito: string;
   estado: string;

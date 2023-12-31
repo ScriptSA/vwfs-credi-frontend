@@ -220,10 +220,10 @@ app-main-frame {
         height: 64px;
 
         .logo {
-          background: url(../../assets/img/logo_line.png) no-repeat left center;
-          background-size: contain;
-          width: 12vw;
-          height: 40px;
+          height: 20px;
+          img{
+            height: 100%;
+          }
         }
 
         .actions {
