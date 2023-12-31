@@ -1,7 +1,10 @@
 //colors
 $primary: rgba(0, 70, 102, 1);
 $accent: rgba(102, 228, 238, 1);
-$warn:rgba(244, 67, 54, 1);
+$warn: rgba(244, 67, 54, 1);
+$dngr: rgba(156, 39, 176, 1);
+$wrnng: rgba(96, 125, 139, 1);
+$sccss: rgba(0, 150, 136, 1);
 $links: rgba(0, 139, 173, 1);
 $transparent: rgba(0, 0, 0, 0);
 
@@ -14,15 +17,16 @@ $hover: rgba(0, 0, 0, .06);
 $odd: rgba(0, 0, 0, .01);
 $even: rgba(0, 0, 0, .03);
 $selected: rgba(0, 70, 102, 0.1);
-$ripple:$hover;
+$sel-odd: rgba(0, 70, 102, .01);
+$sel-even: rgba(0, 70, 102, .03);
+$ripple: $hover;
 
 //text-color
 $text-primary: rgba(0, 70, 102, 1);
 $text-over-primary: rgba(255, 255, 255, .8);
-$text-over-primary: rgba(255, 255, 255, 1);
 $text-over-accent: rgba(0, 0, 0, .8);
 $text-accent: rgba(102, 228, 238, 1);
-$text-warn:rgba(244, 67, 54, 1);
+$text-warn: rgba(244, 67, 54, 1);
 $text-main: rgba(0, 0, 0, .8);
 $text-side: rgba(0, 0, 0, .6);
 $text-disabled: rgba(0, 0, 0, .4);

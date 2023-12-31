@@ -9,9 +9,7 @@ body {
   margin: 0;
   font-family: $main_font;
   overflow: hidden;
-
 }
-
 
 [data-theme='light'] {
   @import './assets/styles/theme-light';
@@ -20,11 +18,11 @@ body {
   @import './app/home/home';
   @import './app/main-frame/mainFrame';
   @import './app/admision-search/admisionSearch';
+  @import './app/admision-detail/admisionDetail';
 
   #lightThemeBtn {
     display: none;
   }
-
 }
 
 [data-theme='dark'] {
@@ -34,6 +32,7 @@ body {
   @import './app/home/home';
   @import './app/main-frame/mainFrame';
   @import './app/admision-search/admisionSearch';
+  @import './app/admision-detail/admisionDetail';
 
   #darkThemeBtn {
     display: none;

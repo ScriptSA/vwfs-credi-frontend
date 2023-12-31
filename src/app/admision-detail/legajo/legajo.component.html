@@ -1,40 +1,166 @@
- <!-- tabla a medida -->
- <div class="table-container">
-  <mat-progress-bar *ngIf="false" mode="indeterminate"></mat-progress-bar>
-  <table mat-table [dataSource]="requisitos" class="custom-table">
+<!-- contenido legajo -->
+<div class="content-grid">
 
+  <!-- avance legajo -->
+  <div class="content-box h-2">
+    <div class="box-title">
+      <div class="title">
+        <div class="action">
+          <mat-icon fontSet="material-symbols-outlined">conversion_path</mat-icon>
+        </div>
+        <div class="text">
+          <div class="main">Avance etapas del legajo digital</div>
+          <div class="side">etapas restantes</div>
+        </div>
+      </div>
 
-    <!-- Requisito N° -->
-    <ng-container matColumnDef="requisito">
-      <th mat-header-cell *matHeaderCellDef>Requisito</th>
-      <td mat-cell *matCellDef="let requisito"> {{requisito.requisito}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="tipoRequisito">
-      <th mat-header-cell *matHeaderCellDef>Tipo De Requisito</th>
-      <td mat-cell *matCellDef="let requisito"> {{requisito.tipoRequisito}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="estado">
-      <th mat-header-cell *matHeaderCellDef>Estado</th>
-      <td mat-cell *matCellDef="let requisito"> {{requisito.estado}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="digital">
-      <th mat-header-cell *matHeaderCellDef>Digital</th>
-      <td mat-cell *matCellDef="let requisito"> {{requisito.digital}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="idThuban">
-      <th class="center" mat-header-cell *matHeaderCellDef hidden>IdT huban</th>
-      <td class="center" mat-cell *matCellDef="let requisito" hidden>
-        {{requisito.idThuban}}
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="columnas; sticky: true"></tr>
-    <tr mat-row (click)="verRequisito(row)" *matRowDef="let row; columns: columnas"
-      [id]="'row-'+row.id">
-  </tr>
-  </table>
+      <!--refrescar -->
+      <div class="action">
+        <button mat-icon-button>
+          <mat-icon fontSet="material-symbols-outlined">refresh</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="box-container">
+      <!-- botones de avance aca -->
+      <button>avance loco</button>
+    </div>
   </div>
+
+  <!-- requisitos legajo -->
+  <div class="content-box h-auto">
+
+    <!-- requisitos titulo -->
+    <div class="box-title">
+      <div class="title">
+        <div class="action">
+          <mat-icon fontSet="material-symbols-outlined">folder_open</mat-icon>
+        </div>
+        <div class="text">
+          <div class="main">documentación del legajo digital</div>
+          <div class="side">documentos pendientes</div>
+        </div>
+      </div>
+
+      <!--refrescar -->
+      <div class="action">
+        <button mat-icon-button>
+          <mat-icon fontSet="material-symbols-outlined">refresh</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <!-- contenido requisitos -->
+    <div class="box-container w-table">
+
+      <!-- tabla a medida -->
+      <div class="table-container">
+        <mat-progress-bar *ngIf="false" mode="indeterminate"></mat-progress-bar>
+        <table mat-table [dataSource]="requisitos" class="custom-table">
+
+          <!-- Requisito Checkbox -->
+          <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef class="check-cell">
+              <mat-checkbox color="primary" (change)="$event ? toggleAllRows() : null"
+                [checked]="selection.hasValue() && isAllSelected()"
+                [indeterminate]="selection.hasValue() && !isAllSelected()">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row" class="check-cell">
+              <mat-checkbox color="primary" (click)="$event.stopPropagation()"
+                (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+              </mat-checkbox>
+            </td>
+          </ng-container>
+
+          <!-- Requisito N° -->
+          <ng-container matColumnDef="requisito">
+            <th mat-header-cell *matHeaderCellDef>Requisito</th>
+            <td mat-cell *matCellDef="let requisito"> {{requisito.requisito | customCapitalize}} </td>
+          </ng-container>
+
+          <!-- Requisito tipo -->
+          <ng-container matColumnDef="tipoRequisito">
+            <th mat-header-cell *matHeaderCellDef>Tipo De Requisito</th>
+            <td mat-cell *matCellDef="let requisito"> {{requisito.tipoRequisito | customCapitalize}} </td>
+          </ng-container>
+
+          <!-- Requisito estado -->
+          <ng-container matColumnDef="estado">
+            <th mat-header-cell *matHeaderCellDef>Estado</th>
+            <td mat-cell *matCellDef="let requisito"> {{requisito.estado | customCapitalize}} </td>
+          </ng-container>
+
+          <!-- Requisito (oculto) -->
+          <ng-container matColumnDef="digital">
+            <th mat-header-cell *matHeaderCellDef hidden>Digital</th>
+            <td mat-cell *matCellDef="let requisito" hidden> {{requisito.digital}} </td>
+          </ng-container>
+
+          <!-- Requisito id:imagen -->
+          <ng-container matColumnDef="idThuban">
+            <th class="center" mat-header-cell *matHeaderCellDef hidden>IdT huban</th>
+            <td class="center" mat-cell *matCellDef="let requisito" hidden>
+              {{requisito.idThuban}}
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columnas; sticky: true"></tr>
+          <tr mat-row (click)="verRequisito(row)" *matRowDef="let row; columns: columnas" [id]="'row-'+row.id"
+            [ngClass]="{'selected' : selection.isSelected(row) }">
+          </tr>
+        </table>
+      </div>
+
+      <!-- acciones requisitos -->
+      <div class="table-actions">
+        <ng-container *ngIf="selection.hasValue()">
+          <!-- aprobar requisito -->
+          <button mat-raised-button class="lg-btn sccss">
+            <div class="btn-content">
+              <span class="text">aprobar</span>
+              <mat-icon fontSet="material-symbols-outlined">check_circle</mat-icon>
+            </div>
+          </button>
+
+          <!-- exceptuar requisito -->
+          <button mat-raised-button class="lg-btn wrnng">
+            <div class="btn-content">
+              <span class="text">exceptuar</span>
+              <mat-icon fontSet="material-symbols-outlined">hide_source</mat-icon>
+            </div>
+          </button>
+
+          <!-- rechazar requisito (multiple) -->
+          <div class="action-content">
+            <button mat-raised-button class="lg-btn dngr content-trigger">
+              <div class="btn-content">
+                <span class="text">rechazar</span>
+                <mat-icon fontSet="material-symbols-outlined">cancel</mat-icon>
+              </div>
+            </button>
+            <div class="action-dropdown">
+              <button mat-stroked-button class="lg-btn outlined dngr">
+                <span class="text">ilegible</span>
+              </button>
+              <button mat-stroked-button class="lg-btn outlined dngr">
+                <span class="text">no corresponde</span>
+              </button>
+              <button mat-stroked-button class="lg-btn outlined dngr">
+                <span class="text">otro motivo</span>
+              </button>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="!selection.hasValue()">
+          <button mat-raised-button class="lg-btn prmr">
+            <div class="btn-content">
+              <span class="text">agregar documentación</span>
+              <mat-icon fontSet="material-symbols-outlined">attach_file_add</mat-icon>
+            </div>
+          </button>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
