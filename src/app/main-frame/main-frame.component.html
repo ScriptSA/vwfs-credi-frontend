@@ -20,7 +20,7 @@
 
     <!-- lv0 -->
     <div class="item" *ngFor="let menu of filterParentId0()">
-      <button mat-button [ngClass]="{'item-header':menu.routerLink==null}" [title]="navOpen ? '' : menu.title"
+      <button mat-button [ngClass]="{'item-header':menu.routerLink=='null'}" [title]="navOpen ? '' : menu.title"
         (click)="menu.routerLink == null?toggleSubItems($event):''">
         <mat-icon fontSet="material-symbols-outlined">{{menu.iconName}}</mat-icon>
         <div class="link-txt" *ngIf="navOpen">

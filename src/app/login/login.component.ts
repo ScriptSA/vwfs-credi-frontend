@@ -34,9 +34,9 @@ export class LoginComponent implements OnInit {
       const password = this.loginForm.value.password;
 
       // Call the AuthService's login method
-      const loggedIn = this.authService.login(username, password);
-
-      if (loggedIn) {
+      this.authService.login(username, password);
+      console.log(this.authService.isAuthenticatedUser())
+      if (this.authService.isAuthenticatedUser()) {
         //successful login
         this.snackbar.openSnackbar('Ingresaste', 5000);
         this.route.navigateByUrl('/main-frame');

@@ -17,7 +17,14 @@
             </mat-expansion-panel-header>
 
             <!-- content preaprobación -->
-            <div class="scroller"></div>
+            <div class="scroller">
+              <div class="content" *ngFor="let etapa of filterPreaprobacionEtapas()">
+                <div class="text">
+                  <div class="main">{{etapa.etapaDescr}}</div>
+                  <div class="side">{{etapa.estadoEtapa + ' ' +etapa.fhEjec + ' ' +etapa.apellidoNombre}}</div>
+                </div>
+              </div>
+            </div>
 
 
         </mat-expansion-panel>
@@ -39,7 +46,16 @@
             </mat-expansion-panel-header>
 
             <!-- content resolución final -->
-            <div class="scroller"></div>
+            <div class="scroller">
+
+
+              <div class="content" *ngFor="let etapa of filterVerficacionEtapas()">
+                <div class="text">
+                  <div class="main">{{etapa.etapaDescr}}</div>
+                  <div class="side">{{ etapa.estadoEtapa}}</div>
+                </div>
+              </div>
+            </div>
 
 
         </mat-expansion-panel>
@@ -57,11 +73,24 @@
                             <div class="side">estado</div>
                         </div>
                     </div>
-                </mat-panel-title>
+                  </mat-panel-title>
+
+
             </mat-expansion-panel-header>
 
             <!-- content liquidación -->
-            <div class="scroller"></div>
+            <div class="scroller" >
+
+                <div class="content" *ngFor="let etapa of filterLiquidacionEtapas()">
+                  <div class="text">
+                    <div class="main">{{etapa.etapaDescr}}</div>
+                    <div class="side">{{ etapa.estadoEtapa}}</div>
+                  </div>
+                </div>
+
+
+
+            </div>
 
 
         </mat-expansion-panel>

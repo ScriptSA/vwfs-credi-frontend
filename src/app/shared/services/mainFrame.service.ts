@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppConfig } from "src/app/app.config";
 import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +14,12 @@ export class MainFrameService {
   baseBackendUrl = AppConfig.settings?.backendBaseUrl;
   menuUrl = '/v1/user/menu';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router,private authService: AuthService) {}
 
 
-  async getMenuData(userId:string): Promise<any> {
-    console.log(userId)
-    const headers = new HttpHeaders({'vnd.bbva.user-id': userId});
+  async getMenuData(): Promise<any> {
+
+    const headers = new HttpHeaders({'vnd.bbva.user-id': this.authService.getCurrentUserId()});
 
     const requestOptions = { headers: headers };
 

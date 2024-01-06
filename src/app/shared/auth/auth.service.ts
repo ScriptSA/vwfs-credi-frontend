@@ -1,27 +1,48 @@
 // auth.service.ts
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AppConfig } from 'src/app/app.config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private isAuthenticated = false;
-  private currentUserRole: string  = '';
+  private currentUserId: string  = '';
+  baseBackendUrl = AppConfig.settings?.backendBaseUrl;
+  loginUrl = '/v1/user/login';
 
+  constructor(private http: HttpClient) {}
   // Simulated login function
-  login(username: string, password: string): boolean {
+  login(username: string, password: string): void {
     // Simulated authentication logic (replace with your actual authentication logic)
-    if (username === 'user1' && password === '1234') {
-      this.isAuthenticated = true;
-      this.currentUserRole = '1';
-      return true;
-    } else if (username === 'user2' && password === '123') {
-      this.isAuthenticated = true;
-      this.currentUserRole = '2';
-      return true;
-    }
-    return false;
+    const promise = new Promise((resolve, reject) => {
+      this.http
+        .post<any>(this.baseBackendUrl+this.loginUrl,{'legajo':username,'password':password})
+        .subscribe({
+          next: (data) => {  resolve(data.data) },
+          error: (err) => {  reject(err)},
+        })
+    })
+    promise.then((value:any) => {
+
+      if (value != ''){
+        this.isAuthenticated = true;
+        this.currentUserId = value;
+
+      } else {
+        this.isAuthenticated = false;
+        this.currentUserId = "";
+
+      }
+    })
+
+
   }
+
+
+
+
 
   // Simulated logout function
   logout(): void {
@@ -35,7 +56,7 @@ export class AuthService {
   }
 
   // Get current user role
-  getCurrentUserRole(): string  {
-    return this.currentUserRole;
+  getCurrentUserId(): string  {
+    return this.currentUserId;
   }
 }

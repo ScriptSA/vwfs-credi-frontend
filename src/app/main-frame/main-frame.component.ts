@@ -18,12 +18,12 @@ export class MainFrameComponent implements OnInit {
   //navbar toggle
   navOpen = false;
 
-  constructor(private mainFrame: MainFrameService, private authService: AuthService, private renderer: Renderer2) {
-    this.userId = this.authService.getCurrentUserRole();
+  constructor(private mainFrame: MainFrameService, private renderer: Renderer2) {
+
   }
 
   async ngOnInit(): Promise<void> {
-    const menus = await this.mainFrame.getMenuData(this.userId);
+    const menus = await this.mainFrame.getMenuData();
     this.menuList = menus.data;
     console.log(this.menuList);
   }
