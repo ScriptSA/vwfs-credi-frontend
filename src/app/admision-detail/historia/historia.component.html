@@ -10,7 +10,7 @@
                         <mat-icon matPrefix fontSet="material-symbols-outlined">task_alt</mat-icon>
                         <div class="text">
                             <div class="main">preaprobación</div>
-                            <div class="side">estado</div>
+                            <div class="side">{{this.etapaFinPreaprobacion?.apellidoNombre}}</div>
                         </div>
                     </div>
                 </mat-panel-title>
@@ -18,10 +18,10 @@
 
             <!-- content preaprobación -->
             <div class="scroller">
-              <div class="content" *ngFor="let etapa of filterPreaprobacionEtapas()">
+              <div class="content" *ngFor="let etapa of this.listaPreaprobacion">
                 <div class="text">
                   <div class="main">{{etapa.etapaDescr}}</div>
-                  <div class="side">{{etapa.estadoEtapa + ' ' +etapa.fhEjec + ' ' +etapa.apellidoNombre}}</div>
+                  <div class="side">{{this.etapaFinPreaprobacion?.estadoEtapa + ' ' + this.etapaFinPreaprobacion?.fhEjec}}</div>
                 </div>
               </div>
             </div>
@@ -39,7 +39,7 @@
                         <mat-icon matPrefix fontSet="material-symbols-outlined">task_alt</mat-icon>
                         <div class="text">
                             <div class="main">resolución final</div>
-                            <div class="side">estado</div>
+                            <div class="side">{{this.etapaFinResolucion?.estadoEtapa + ' ' + this.etapaFinResolucion?.fhEjec}}</div>
                         </div>
                     </div>
                 </mat-panel-title>
@@ -49,7 +49,7 @@
             <div class="scroller">
 
 
-              <div class="content" *ngFor="let etapa of filterVerficacionEtapas()">
+              <div class="content" *ngFor="let etapa of this.listaResolucion">
                 <div class="text">
                   <div class="main">{{etapa.etapaDescr}}</div>
                   <div class="side">{{ etapa.estadoEtapa}}</div>
@@ -70,7 +70,7 @@
                         <mat-icon matPrefix fontSet="material-symbols-outlined">task_alt</mat-icon>
                         <div class="text">
                             <div class="main">liquidación</div>
-                            <div class="side">estado</div>
+                            <div class="side">{{this.etapaFinAlta?.estadoEtapa + ' ' + this.etapaFinAlta?.fhEjec}}</div>
                         </div>
                     </div>
                   </mat-panel-title>
@@ -81,7 +81,7 @@
             <!-- content liquidación -->
             <div class="scroller" >
 
-                <div class="content" *ngFor="let etapa of filterLiquidacionEtapas()">
+                <div class="content" *ngFor="let etapa of this.listaAltas">
                   <div class="text">
                     <div class="main">{{etapa.etapaDescr}}</div>
                     <div class="side">{{ etapa.estadoEtapa}}</div>

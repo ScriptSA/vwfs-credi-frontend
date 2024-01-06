@@ -20,7 +20,12 @@ export class HistoriaComponent implements OnInit {
 
 
   etapas:Etapa[] = [];
-
+  listaPreaprobacion:Etapa[] = [];
+  etapaFinPreaprobacion:Etapa|undefined = new Etapa();
+  listaResolucion:Etapa[] = [];
+  etapaFinResolucion:Etapa|undefined = new Etapa();
+  listaAltas:Etapa[] = [];
+  etapaFinAlta:Etapa|undefined = new Etapa();
   constructor(private http: HttpClient,private authService:AuthService) { }
 
   ngOnInit(): void {
@@ -31,21 +36,28 @@ export class HistoriaComponent implements OnInit {
     this.http
         .post<any>(this.baseBackendUrl + this.historiaTramiteUrl, { 'nroTramite': this.nroTramite }, requestOptions)
         .subscribe({
-          next: (data) => { this.etapas = data.data;  },
+          next: (data) => { this.etapas = data.data; this.setFilters()  },
           error: (err) => console.log(err),
         });
-
-
+  }
+  setFilters(){
+    this.filterPreaprobacionEtapas();
+    this.filterResolucionEtapas();
+    this.filterLiquidacionEtapas();
   }
 
   filterPreaprobacionEtapas() {
-    return this.etapas.filter(x => x.subProcesoAbrev == 'PREAPROB');
+    this.listaPreaprobacion = this.etapas.filter(x => x.subProcesoAbrev == 'PREAPROB');
+    this.etapaFinPreaprobacion = this.listaPreaprobacion.find(t => t.etapaFinSubProceso === '*')
+
   }
-  filterVerficacionEtapas() {
-    return this.etapas.filter(x => x.subProcesoAbrev == 'VERIFIC');
+  filterResolucionEtapas() {
+    this.listaResolucion =  this.etapas.filter(x => x.subProcesoAbrev == 'VERIFIC');
+    this.etapaFinResolucion = this.listaResolucion.find(t => t.etapaFinSubProceso === '*')
   }
   filterLiquidacionEtapas() {
-    return this.etapas.filter(x => x.subProcesoAbrev == 'ALTAS');
+    this.listaAltas =  this.etapas.filter(x => x.subProcesoAbrev == 'ALTAS');
+    this.etapaFinAlta = this.listaAltas.find(t => t.etapaFinSubProceso === '*')
   }
 
 
