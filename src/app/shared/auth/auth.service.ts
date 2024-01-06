@@ -14,40 +14,35 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
   // Simulated login function
-  login(username: string, password: string): void {
-    // Simulated authentication logic (replace with your actual authentication logic)
-    const promise = new Promise((resolve, reject) => {
-      this.http
-        .post<any>(this.baseBackendUrl+this.loginUrl,{'legajo':username,'password':password})
-        .subscribe({
-          next: (data) => {  resolve(data.data) },
-          error: (err) => {  reject(err)},
-        })
-    })
-    promise.then((value:any) => {
-
-      if (value != ''){
-        this.isAuthenticated = true;
-        this.currentUserId = value;
-
-      } else {
-        this.isAuthenticated = false;
-        this.currentUserId = "";
-
-      }
-    })
-
-
+  isEmpty<Obj extends Record<PropertyKey, unknown>>(obj: Obj) {
+    return Object.keys(obj).length === 0
   }
+  async login(username: string, password: string):Promise<any> {
+    // Simulated authentication logic (replace with your actual authentication logic)
+      return new Promise((resolve, reject) => {
+        this.http
+          .post<any>(this.baseBackendUrl+this.loginUrl,{'legajo':username,'password':password})
+          .subscribe({
+            next: (data) => {
+              if (!this.isEmpty(data) && data!=undefined &&  data.data != ''){
+                this.isAuthenticated = true;
+                this.currentUserId = data.data;
+                resolve(true);
+              } else {
+                this.isAuthenticated = false;
+                resolve(true);
+              }
 
-
-
-
+            },
+            error: (err) => {this.isAuthenticated = false; reject(err)}
+          })
+        })
+    }
 
   // Simulated logout function
   logout(): void {
     this.isAuthenticated = false;
-
+    this.currentUserId = "";
   }
 
   // Check if user is authenticated

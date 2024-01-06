@@ -28,14 +28,13 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(): void {
+ async onSubmit(): Promise<void> {
     if (this.loginForm.valid) {
       const username = this.loginForm.value.username;
       const password = this.loginForm.value.password;
 
       // Call the AuthService's login method
-      this.authService.login(username, password);
-      console.log(this.authService.isAuthenticatedUser())
+      await this.authService.login(username, password);
       if (this.authService.isAuthenticatedUser()) {
         //successful login
         this.snackbar.openSnackbar('Ingresaste', 5000);
