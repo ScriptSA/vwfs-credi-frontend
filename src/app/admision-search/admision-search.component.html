@@ -1,0 +1,193 @@
+<!-- marco modulo -->
+<div class="app-frame">
+
+  <!-- titulo modulo -->
+  <div class="topbar">
+    <div class="title">
+      <div class="action">
+        <mat-icon fontSet="material-symbols-outlined">accessibility</mat-icon>
+      </div>
+      <div class="text">
+        <div class="main">personas físicas</div>
+        <div class="side">admisión</div>
+      </div>
+    </div>
+    <div class="search">
+      <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline">
+          <mat-icon matPrefix fontSet="material-symbols-outlined">search</mat-icon>
+          <input matInput formControlName="search" type="text" placeholder="Buscar trámites por número">
+          <button mat-icon-button type="button" matSuffix>
+            <mat-icon fontSet="material-symbols-outlined">instant_mix</mat-icon>
+          </button>
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+  <mat-tab-group class="custom-tab-group">
+
+    <!-- tab colas -->
+    <mat-tab
+      [label]="totalPendingNumber > 1 ? totalPendingNumber + ' trámites encontrados': (totalPendingNumber == 1 ?'1 trámite encontrado':'Sin trámites')">
+
+      <!-- colas -->
+      <mat-accordion class="custom-accordion tree" *ngIf="totalPendingNumber > 1">
+        <ng-container *ngFor="let spool of spoolerTable.spools">
+          <mat-expansion-panel *ngFor="let filter of spool.filterBy">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <div class="title-content">
+                  <mat-icon fontSet="material-symbols-outlined">search</mat-icon>
+                  <div class="text">
+                    <div class="main">{{filter}}</div>
+                    <div class="side">N° encontrados</div>
+                  </div>
+                </div>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <!-- tabla a medida -->
+            <div class="table-container">
+              <mat-progress-bar *ngIf="false" mode="indeterminate"></mat-progress-bar>
+              <table mat-table [dataSource]="tramites" class="custom-table">
+
+                <!-- Estado -->
+                <ng-container matColumnDef="estado">
+                  <th class="center" mat-header-cell *matHeaderCellDef hidden>estado</th>
+                  <td class="center" mat-cell *matCellDef="let admision" hidden>
+                    <mat-icon fontSet="material-symbols-outlined">{{mapIcon.get(admision.estadoLD)}} </mat-icon>
+                  </td>
+                </ng-container>
+
+                <!-- Tramite N° -->
+                <ng-container matColumnDef="numero">
+                  <th mat-header-cell *matHeaderCellDef>nro de trámite</th>
+                  <td mat-cell *matCellDef="let admision"> {{admision.nroTramite}} </td>
+                </ng-container>
+
+                <!-- Carga -->
+                <ng-container matColumnDef="carga">
+                  <th mat-header-cell *matHeaderCellDef>fecha y hora carga</th>
+                  <td mat-cell *matCellDef="let admision"> {{admision.fhCarga | date:'d/M/yy, h:mm a'}} </td>
+                </ng-container>
+
+                <!-- Modificacion -->
+                <ng-container matColumnDef="modificado">
+                  <th mat-header-cell *matHeaderCellDef>última modificación</th>
+                  <td mat-cell *matCellDef="let admision"> {{admision.fhUltMod | date:'d/M/yy, h:mm a'}} </td>
+                </ng-container>
+
+                <!-- Cliente -->
+                <ng-container matColumnDef="cliente">
+                  <th mat-header-cell *matHeaderCellDef>cliente</th>
+                  <td mat-cell *matCellDef="let admision">{{admision.cliente}}</td>
+                </ng-container>
+
+                <!-- Campaña -->
+                <ng-container matColumnDef="campania">
+                  <th mat-header-cell *matHeaderCellDef>campaña</th>
+                  <td mat-cell *matCellDef="let admision"> {{admision.campComDescr}} </td>
+                </ng-container>
+
+                <!-- Concesionario -->
+                <ng-container matColumnDef="concesionario">
+                  <th mat-header-cell *matHeaderCellDef>concesionario</th>
+                  <td mat-cell *matCellDef="let admision"> {{admision.razonSocial}} </td>
+                </ng-container>
+
+                <!-- Monto -->
+                <ng-container matColumnDef="monto">
+                  <th mat-header-cell *matHeaderCellDef>monto</th>
+                  <td mat-cell *matCellDef="let admision"> {{admision.montoCapital}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="columnasBusqueda; sticky: true"></tr>
+                <tr mat-row (click)="detalleTramite(row)" *matRowDef="let row; columns: columnasBusqueda"
+                  [id]="'row-'+row.id">
+                </tr>
+              </table>
+            </div>
+          </mat-expansion-panel>
+        </ng-container>
+      </mat-accordion>
+
+      <!-- info: sin colas -->
+      <app-info [class]="'primary'" [icon]="'indeterminate_question_box'" [mainText]="'No hay trámites aquí'"
+        [sideText]="'Intenta hacer una búsqueda'"></app-info>
+
+    </mat-tab>
+
+    <!-- tab resultados busqueda -->
+    <mat-tab *ngIf="searchResults">
+      <ng-template mat-tab-label>
+        {{resultNumber > 1 ? resultNumber + ' trámites encontrados':
+        (resultNumber == 1 ?'1 trámite encontrado':'Sin trámites')}}
+        <button mat-icon-button (click)="removeResults()">
+          <mat-icon fontSet="material-symbols-outlined">delete</mat-icon>
+        </button>
+      </ng-template>
+
+      <!-- tabla a medida -->
+      <div class="table-container">
+        <mat-progress-bar *ngIf="false" mode="indeterminate"></mat-progress-bar>
+        <table mat-table [dataSource]="tramites" class="custom-table">
+
+          <!-- Estado -->
+          <ng-container matColumnDef="estado">
+            <th class="center" mat-header-cell *matHeaderCellDef>estado</th>
+            <td class="center" mat-cell *matCellDef="let admision">
+              <mat-icon fontSet="material-symbols-outlined">{{mapIcon.get(admision.estadoLD)}}</mat-icon>
+            </td>
+          </ng-container>
+
+          <!-- Tramite N° -->
+          <ng-container matColumnDef="numero">
+            <th mat-header-cell *matHeaderCellDef>nro de trámite</th>
+            <td mat-cell *matCellDef="let admision"> {{admision.nroTramite}} </td>
+          </ng-container>
+
+          <!-- Carga -->
+          <ng-container matColumnDef="carga">
+            <th mat-header-cell *matHeaderCellDef>fecha y hora carga</th>
+            <td mat-cell *matCellDef="let admision"> {{admision.fhCarga | date:'dd/MM/yyyy, HH:mm'}} </td>
+          </ng-container>
+
+          <!-- Modificacion -->
+          <ng-container matColumnDef="modificado">
+            <th mat-header-cell *matHeaderCellDef>última modificación</th>
+            <td mat-cell *matCellDef="let admision"> {{admision.fhUltMod | date:'dd/MM/yyyy, HH:mm'}} </td>
+          </ng-container>
+
+          <!-- Cliente -->
+          <ng-container matColumnDef="cliente">
+            <th mat-header-cell *matHeaderCellDef>cliente</th>
+            <td mat-cell *matCellDef="let admision">{{admision.cliente |customCapitalize}}</td>
+          </ng-container>
+
+          <!-- Campaña -->
+          <ng-container matColumnDef="campania">
+            <th mat-header-cell *matHeaderCellDef>campaña</th>
+            <td mat-cell *matCellDef="let admision"> {{admision.campComDescr | customCapitalize}} </td>
+          </ng-container>
+
+          <!-- Concesionario -->
+          <ng-container matColumnDef="concesionario">
+            <th mat-header-cell *matHeaderCellDef>concesionario</th>
+            <td mat-cell *matCellDef="let admision"> {{admision.razonSocial | customCapitalize}} </td>
+          </ng-container>
+
+          <!-- Monto -->
+          <ng-container matColumnDef="monto">
+            <th mat-header-cell *matHeaderCellDef>monto</th>
+            <td mat-cell *matCellDef="let admision"> {{admision.montoCapital | number:'1.2-2'}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columnasBusqueda; sticky: true"></tr>
+          <tr mat-row (click)="detalleTramite(row)" *matRowDef="let row; columns: columnasBusqueda"
+            [id]="'row-'+row.id">
+          </tr>
+        </table>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

@@ -1,4 +1,40 @@
-/* You can add global styles to this file, and also import other style files */
+@import './assets/styles/main-theme';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: $main_font;
+  overflow: hidden;
+}
+
+[data-theme='light'] {
+  @import './assets/styles/theme-light';
+  @import './assets/styles/app';
+  @import './app/login/login';
+  @import './app/home/home';
+  @import './app/main-frame/mainFrame';
+  @import './app/admision-search/admisionSearch';
+  @import './app/admision-detail/admisionDetail';
+
+  #lightThemeBtn {
+    display: none;
+  }
+}
+
+[data-theme='dark'] {
+  @import './assets/styles/theme-dark';
+  @import './assets/styles/app';
+  @import './app/login/login';
+  @import './app/home/home';
+  @import './app/main-frame/mainFrame';
+  @import './app/admision-search/admisionSearch';
+  @import './app/admision-detail/admisionDetail';
+
+  #darkThemeBtn {
+    display: none;
+  }
+}

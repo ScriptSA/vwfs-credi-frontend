@@ -1,0 +1,73 @@
+<!-- marco modulo -->
+<div class="app-frame" [ngClass]="{'history-open': historyOpen}">
+
+    <!-- titulo modulo -->
+    <div class="topbar">
+        <div class="title">
+            <div class="action">
+                <button mat-icon-button (click)="volverAdmision()">
+                    <mat-icon fontSet="material-symbols-outlined">arrow_back</mat-icon>
+                </button>
+            </div>
+            <div class="text">
+                <div class="main">{{clienteElegido ? clienteElegido : 'Cargando cliente...'}}</div>
+                <div class="side"> {{nroTramiteElegido ? 'Trámite N° ' + nroTramiteElegido : 'Cargando N° trámite ...'}}</div>
+            </div>
+        </div>
+
+        <div class="action" *ngIf="!historyOpen">
+            <button mat-stroked-button class="lg-btn outlined" (click)="toggleHistory()">
+                <div class="btn-content">
+                    <span class="text">abrir historia</span>
+                    <mat-icon fontSet="material-symbols-outlined">history</mat-icon>
+                </div>
+            </button>
+        </div>
+    </div>
+
+    <!-- tabs detalle-->
+    <mat-tab-group class="custom-tab-group uppercase"  [(selectedIndex)]="selectedTabIndex">
+
+        <!-- tab listado -->
+        <mat-tab label="listado tareas">
+            <app-tareas></app-tareas>
+        </mat-tab>
+
+        <!-- tab datos persona -->
+        <mat-tab label="datos persona">
+            <app-persona></app-persona>
+        </mat-tab>
+
+        <!-- tab datos trámite -->
+        <mat-tab label="datos trámite">
+            <app-datos></app-datos>
+        </mat-tab>
+
+        <!-- tab legajo -->
+        <mat-tab label="legajo digital">
+            <app-legajo  [nroTramite]="nroTramite"></app-legajo>
+        </mat-tab>
+    </mat-tab-group>
+</div>
+
+<div class="side-frame" [ngClass]="{'open': historyOpen}">
+    <!-- titulo detalle -->
+    <div class="topbar">
+        <div class="title">
+            <div class="action">
+                <mat-icon fontSet="material-symbols-outlined">history</mat-icon>
+            </div>
+            <div class="text">
+                <div class="main">historia del trámite</div>
+            </div>
+        </div>
+        <div class="action">
+            <button mat-icon-button (click)="toggleHistory()">
+                <mat-icon fontSet="material-symbols-outlined">close</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <!-- content detalle -->
+    <app-historia [nroTramite]="nroTramite"></app-historia>
+</div>
