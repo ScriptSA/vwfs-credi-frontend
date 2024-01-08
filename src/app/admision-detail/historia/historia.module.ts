@@ -6,6 +6,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableModule } from '@angular/material/table';
+import {MatListModule} from '@angular/material/list';
 import { PipesModule } from '../../shared/modules/pipes.module';
 import { InfoModule } from '../../shared/modules/info.module';
 
@@ -21,6 +22,7 @@ import { InfoModule } from '../../shared/modules/info.module';
     MatTableModule,
     MatProgressBarModule,
     MatExpansionModule,
+    MatListModule,
     PipesModule,
     InfoModule
   ],

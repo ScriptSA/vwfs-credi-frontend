@@ -1,98 +1,172 @@
 <div class="history">
-    <mat-accordion class="custom-accordion">
-        <!-- cajon preaprobación -->
-        <mat-expansion-panel>
+  <mat-accordion class="custom-accordion">
+    <!-- cajon preaprobación -->
+    <mat-expansion-panel expanded hideToggle>
 
-            <!-- titulo preaprobación -->
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    <div class="title-content">
-                        <mat-icon matPrefix fontSet="material-symbols-outlined">task_alt</mat-icon>
-                        <div class="text">
-                            <div class="main">preaprobación</div>
-                            <div class="side">{{this.etapaFinPreaprobacion?.apellidoNombre}}</div>
-                        </div>
-                    </div>
-                </mat-panel-title>
-            </mat-expansion-panel-header>
+      <!-- titulo preaprobación -->
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <div class="title-content">
+            <mat-icon matPrefix fontSet="material-symbols-outlined">
+              {{etapaFinPreaprobacion?.estadoEtapa !=  'NOEF' && etapaFinPreaprobacion?.estadoEtapa !=  'ERRO'  ? 'task_alt' : 'pending'}}
+            </mat-icon>
+            <div class="text">
+              <div class="main">preaprobación</div>
+              <div class="side">
+                {{ etapaFinPreaprobacion?.estadoEtapa + ' ' + (etapaFinPreaprobacion?.fhEjec == null ?
+                '' : etapaFinPreaprobacion?.fhEjec | date:'d/M/yy, h:mm a') }}</div>
+            </div>
+          </div>
+          <button mat-icon-button hidden>
+            <mat-icon fontSet="material-symbols-outlined">sync</mat-icon>
+          </button>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
 
-            <!-- content preaprobación -->
-            <div class="scroller">
-              <div class="content" *ngFor="let etapa of this.listaPreaprobacion">
-                <div class="text">
-                  <div class="main">{{etapa.etapaDescr}}</div>
-                  <div class="side">{{this.etapaFinPreaprobacion?.estadoEtapa + ' ' + this.etapaFinPreaprobacion?.fhEjec}}</div>
-                </div>
+      <!-- content preaprobación -->
+      <div class="scroller">
+
+        <div class="item" [ngClass]="{'show-info' : showInfo}" *ngFor="let etapa of listaPreaprobacion">
+          <div class="title">
+            <div class="text">
+              <span class="main">{{ etapa.etapaDescr }}</span>
+              <span class="side">{{ etapa.estadoEtapa }}</span>
+            </div>
+            <button mat-icon-button (click)="toggleInfo($event)" *ngIf="etapa.estadoEtapa != 'NOEF'"
+              [title]=" showInfo ? 'Ocultar Info':'Ver Info'">
+              <mat-icon class="opened" fontSet="material-symbols-outlined">info</mat-icon>
+              <mat-icon class="closed" fontSet="material-symbols-outlined">close</mat-icon>
+            </button>
+          </div>
+          <div class="content">
+            <div class="header">
+              info adicional
+            </div>
+            <div class="line" *ngIf="etapa.fhEjec || etapa.fhEjec != null">
+              <mat-icon fontSet="material-symbols-outlined">calendar_clock</mat-icon>
+              {{etapa.fhEjec | date:'d/M/yy, h:mm a'}}
+            </div>
+            <div class="line" *ngIf="etapa.apellidoNombre != ' '">
+              <mat-icon fontSet="material-symbols-outlined">person</mat-icon>
+              {{etapa.apellidoNombre}}
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </mat-expansion-panel>
+
+    <!-- cajon resolución final -->
+    <mat-expansion-panel hideToggle>
+
+      <!-- titulo resolución final -->
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <div class="title-content">
+            <mat-icon matPrefix fontSet="material-symbols-outlined">
+              {{etapaFinResolucion?.estadoEtapa != 'NOEF' && etapaFinResolucion?.estadoEtapa != 'ERRO' ? 'task_alt' : 'pending'}}
+            </mat-icon>
+            <div class="text">
+              <div class="main">resolución final</div>
+              <div class="side">
+                {{ etapaFinResolucion?.estadoEtapa + ' ' + (etapaFinResolucion?.fhEjec == null ? '' :
+                etapaFinResolucion?.fhEjec | date:'d/M/yy, h:mm a') }}
               </div>
             </div>
+          </div>
+          <button mat-icon-button hidden>
+            <mat-icon fontSet="material-symbols-outlined">sync</mat-icon>
+          </button>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
 
-
-        </mat-expansion-panel>
-
-        <!-- cajon resolución final -->
-        <mat-expansion-panel>
-
-            <!-- titulo resolución final -->
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    <div class="title-content">
-                        <mat-icon matPrefix fontSet="material-symbols-outlined">task_alt</mat-icon>
-                        <div class="text">
-                            <div class="main">resolución final</div>
-                            <div class="side">{{this.etapaFinResolucion?.estadoEtapa + ' ' + this.etapaFinResolucion?.fhEjec}}</div>
-                        </div>
-                    </div>
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <!-- content resolución final -->
-            <div class="scroller">
-
-
-              <div class="content" *ngFor="let etapa of this.listaResolucion">
-                <div class="text">
-                  <div class="main">{{etapa.etapaDescr}}</div>
-                  <div class="side">{{ etapa.estadoEtapa}}</div>
-                </div>
-              </div>
+      <!-- content resolución final -->
+      <div class="scroller">
+        <div class="item" [ngClass]="{'show-info' : showInfo}" *ngFor="let etapa of listaResolucion">
+          <div class="title">
+            <div class="text">
+              <span class="main">{{ etapa.etapaDescr }}</span>
+              <span class="side">{{ etapa.estadoEtapa }}</span>
             </div>
-
-
-        </mat-expansion-panel>
-
-        <!-- cajon liquidación -->
-        <mat-expansion-panel>
-
-            <!-- titulo liquidación -->
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    <div class="title-content">
-                        <mat-icon matPrefix fontSet="material-symbols-outlined">task_alt</mat-icon>
-                        <div class="text">
-                            <div class="main">liquidación</div>
-                            <div class="side">{{this.etapaFinAlta?.estadoEtapa + ' ' + this.etapaFinAlta?.fhEjec}}</div>
-                        </div>
-                    </div>
-                  </mat-panel-title>
-
-
-            </mat-expansion-panel-header>
-
-            <!-- content liquidación -->
-            <div class="scroller" >
-
-                <div class="content" *ngFor="let etapa of this.listaAltas">
-                  <div class="text">
-                    <div class="main">{{etapa.etapaDescr}}</div>
-                    <div class="side">{{ etapa.estadoEtapa}}</div>
-                  </div>
-                </div>
-
-
-
+            <button mat-icon-button (click)="toggleInfo($event)" *ngIf="etapa.estadoEtapa != 'NOEF'"
+              [title]=" showInfo ? 'Ocultar Info':'Ver Info'">
+              <mat-icon class="opened" fontSet="material-symbols-outlined">info</mat-icon>
+              <mat-icon class="closed" fontSet="material-symbols-outlined">close</mat-icon>
+            </button>
+          </div>
+          <div class="content">
+            <div class="header">
+              info adicional
             </div>
+            <div class="line" *ngIf="etapa.fhEjec || etapa.fhEjec != null">
+              <mat-icon fontSet="material-symbols-outlined">calendar_clock</mat-icon>
+              {{etapa.fhEjec | date:'d/M/yy, h:mm a'}}
+            </div>
+            <div class="line" *ngIf="etapa.apellidoNombre != ' '">
+              <mat-icon fontSet="material-symbols-outlined">person</mat-icon>
+              {{etapa.apellidoNombre}}
+            </div>
+          </div>
+        </div>
+      </div>
 
+    </mat-expansion-panel>
 
-        </mat-expansion-panel>
-    </mat-accordion>
+    <!-- cajon liquidación -->
+    <mat-expansion-panel hideToggle>
+
+      <!-- titulo liquidación -->
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <div class="title-content">
+            <mat-icon matPrefix fontSet="material-symbols-outlined">
+              {{etapaFinAlta?.estadoEtapa != 'NOEF' && etapaFinAlta?.estadoEtapa != 'ERRO' ? 'task_alt' : 'pending'}}
+            </mat-icon>
+            <div class="text">
+              <div class="main">liquidación</div>
+              <div class="side">{{ etapaFinAlta?.estadoEtapa + ' ' + (etapaFinAlta?.fhEjec == null ? '' :
+                etapaFinAlta?.fhEjec | date:'d/M/yy, h:mm a')}}</div>
+            </div>
+          </div>
+          <button mat-icon-button hidden>
+            <mat-icon fontSet="material-symbols-outlined">sync</mat-icon>
+          </button>
+
+        </mat-panel-title>
+
+      </mat-expansion-panel-header>
+
+      <!-- content liquidación -->
+      <div class="scroller">
+        <div class="item" [ngClass]="{'show-info' : showInfo}" *ngFor="let etapa of listaAltas">
+          <div class="title">
+            <div class="text">
+              <span class="main">{{ etapa.etapaDescr }}</span>
+              <span class="side">{{ etapa.estadoEtapa }}</span>
+            </div>
+            <button mat-icon-button (click)="toggleInfo($event)" *ngIf="etapa.estadoEtapa != 'NOEF'"
+              [title]=" showInfo ? 'Ocultar Info':'Ver Info'">
+              <mat-icon class="opened" fontSet="material-symbols-outlined">info</mat-icon>
+              <mat-icon class="closed" fontSet="material-symbols-outlined">close</mat-icon>
+            </button>
+          </div>
+          <div class="content">
+            <div class="header">
+              info adicional
+            </div>
+            <div class="line" *ngIf="etapa.fhEjec || etapa.fhEjec != null">
+              <mat-icon fontSet="material-symbols-outlined">calendar_clock</mat-icon>
+              {{etapa.fhEjec | date:'d/M/yy, h:mm a'}}
+            </div>
+            <div class="line" *ngIf="etapa.apellidoNombre != ' '">
+              <mat-icon fontSet="material-symbols-outlined">person</mat-icon>
+              {{etapa.apellidoNombre}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>

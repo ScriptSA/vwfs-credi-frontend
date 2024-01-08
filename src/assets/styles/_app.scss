@@ -7,6 +7,10 @@ app-root {
   color: $text-main;
 }
 
+*[hidden] {
+  display: none !important;
+}
+
 //modules frame
 .app-frame {
   height: calc(100vh - 64px);
@@ -504,7 +508,9 @@ mat-icon {
         }
       }
     }
+  }
 
+  &.tree {
     .mat-expansion-panel-body {
       padding: 0 0 0 56px;
 
@@ -554,7 +560,6 @@ mat-icon {
         }
       }
     }
-
   }
 }
 
@@ -597,6 +602,7 @@ mat-icon {
         font-size: 16px;
         color: $text-main;
         line-height: 1;
+        border-bottom: 0;
       }
 
       &:nth-child(even) {
@@ -627,8 +633,14 @@ mat-icon {
     }
   }
 
-  .check-cell {
+  .icon-cell {
     width: 72px;
+
+    //mat-icon
+    mat-icon {
+      width: 48px !important;
+      height: 48px !important;
+    }
 
     //checkbox 
     .mat-mdc-checkbox {

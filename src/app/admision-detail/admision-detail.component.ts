@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AdmisionSearchService } from '../shared/services/admision-search.service';
+import { Admision } from '../shared/models/admision';
 
 
 
@@ -9,9 +11,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: []
 })
 
-export class AdmisionDetailComponent implements OnInit{
+export class AdmisionDetailComponent implements OnInit {
   //test id navigation
-  nroTramite: string | undefined;
+  nroTramite!: string;
 
   //detalle abierto
   historyOpen = false;
@@ -19,18 +21,30 @@ export class AdmisionDetailComponent implements OnInit{
   //control de tabs
   selectedTabIndex = 0;
 
-  constructor(private route: ActivatedRoute) { }
+  //tramite
+  tramites: Admision[] = [];
+  clienteElegido!: string;
+  nroTramiteElegido!: string;
 
-  ngOnInit(): void {
+
+  constructor(private route: ActivatedRoute, private admisionSearch: AdmisionSearchService) { }
+
+  async ngOnInit(): Promise<void> {
     this.route.params.subscribe(params => {
       this.nroTramite = params['nroTramite']; // Get the ID from route parameters
     });
 
     this.selectedTabIndex = 3;
+
+    let searchTerm = this.nroTramite;
+    this.tramites = await this.admisionSearch.getTramiteWithFilter(searchTerm);
+    let filteredData = this.tramites.filter(item => item.nroTramite === searchTerm)
+    this.clienteElegido = filteredData[0].cliente;
+    this.nroTramiteElegido = filteredData[0].nroTramite;
   };
 
- 
-  
+
+
   volverAdmision() {
     window.history.back();
   }

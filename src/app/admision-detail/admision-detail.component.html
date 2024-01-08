@@ -10,8 +10,8 @@
                 </button>
             </div>
             <div class="text">
-                <div class="main">Nombre Del Titular</div>
-                <div class="side">Trámite N° {{nroTramite}}</div>
+                <div class="main">{{clienteElegido ? clienteElegido : 'Cargando cliente...'}}</div>
+                <div class="side"> {{nroTramiteElegido ? 'Trámite N° ' + nroTramiteElegido : 'Cargando N° trámite ...'}}</div>
             </div>
         </div>
 
@@ -69,5 +69,5 @@
     </div>
 
     <!-- content detalle -->
-    <app-historia   [nroTramite]="nroTramite"></app-historia>
+    <app-historia [nroTramite]="nroTramite"></app-historia>
 </div>
