@@ -113,6 +113,11 @@ app-admision-detail {
                                 tr {
                                     position: relative !important;
 
+                                    td {
+                                        color: $text-primary;
+                                        font-weight: 500;
+                                    }
+
                                     &:first-of-type {
                                         &::before {
                                             top: -20px;
@@ -130,6 +135,28 @@ app-admision-detail {
                                         height: 48px;
                                         width: 20px;
                                         box-sizing: border-box;
+                                    }
+
+                                    &.no-img {
+
+                                        td {
+                                            color: $text-main;
+                                            font-weight: unset;
+                                        }
+
+                                        cursor: default;
+
+                                        &:nth-child(even) {
+                                            &:hover {
+                                                background: $even;
+                                            }
+                                        }
+
+                                        &:nth-child(odd) {
+                                            &:hover {
+                                                background: $odd;
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -242,7 +269,126 @@ app-admision-detail {
             height: calc(100% - 80px);
             box-sizing: border-box;
             padding: 0 24px 32px;
+
+            .mat-expansion-panel-body {
+                padding: 0;
+
+                .scroller {
+                    overflow-y: auto;
+                    max-height: calc(100vh - 64px - 80px - 58px - (48px * 2) - 16px - 32px);
+
+                    .item {
+                        max-height: 56px;
+                        overflow: hidden;
+                        padding: 0 16px 0 40px;
+                        box-sizing: border-box;
+                        transition: max-height .2s cubic-bezier(0.4, 0, 0.2, 1);
+
+                        .title {
+                            height: 56px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+
+                            .text {
+                                display: flex;
+                                flex-direction: column;
+
+                                .main {
+                                    color: $text-primary;
+                                }
+
+                                .side {
+                                    font-size: 11px;
+                                    font-weight: bold;
+                                    color: $text-main;
+                                }
+                            }
+
+                            button {
+                                color: $text-main;
+
+                                .opened {
+                                    display: flex !important;
+                                }
+
+                                .closed {
+                                    display: none !important;
+                                }
+                            }
+                        }
+
+                        .content {
+                            padding: 16px 0;
+                            box-sizing: border-box;
+                            border-top: 1px solid $divider;
+
+                            .header {
+                                font-size: 12px;
+                                text-transform: uppercase;
+                                color: $text-side;
+                                letter-spacing: 0;
+                            }
+
+                            .line {
+                                display: flex;
+                                align-items: center;
+                                column-gap: 16px;
+                                height: 48px;
+                                overflow: hidden;
+                                padding: 0 16px;
+                                box-sizing: border-box;
+                                color: $text-primary;
+
+                                mat-icon {
+                                    color: $text-main;
+                                }
+                            }
+                        }
+
+                        &:nth-child(odd) {
+                            background: $odd;
+                        }
+
+                        &:nth-child(even) {
+                            background: $even;
+                        }
+
+                        &.show-info {
+                            max-height: 300px;
+                            background: $selected;
+                            transition: max-height .2s cubic-bezier(0.4, 0, 0.2, 1);
+                            transition-delay: .1s;
+
+                            .title {
+                                height: 56px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+
+                                .text {
+                                    display: flex;
+                                    flex-direction: column;
+
+                                    .main {
+                                        font-weight: bold;
+                                    }
+                                }
+
+                                button {
+                                    .opened {
+                                        display: none !important;
+                                    }
+
+                                    .closed {
+                                        display: flex !important;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
-
 }

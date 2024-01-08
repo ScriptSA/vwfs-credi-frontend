@@ -18,7 +18,6 @@ export class AdmisionSearchComponent implements OnInit {
   searchResults = false;
   columnasBusqueda = ['estado', 'numero', 'carga', 'modificado', 'cliente', 'campania', 'concesionario', 'monto'];
   tramites: Admision[] = [];
-  selectedTramite?: Admision;
   loading = false;
   statusIcon = { 'APROBADO': 'task_alt', 'NOEF': 'pending' }
   mapIcon: any = new Map(Object.entries(this.statusIcon));

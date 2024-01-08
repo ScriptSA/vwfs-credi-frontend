@@ -1,7 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { MatTabGroup } from '@angular/material/tabs';
+import { Component, Input, OnInit} from '@angular/core';
 import { AppConfig } from 'src/app/app.config';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { Requisito } from 'src/app/shared/models/requisito';
@@ -32,7 +31,6 @@ export class LegajoComponent implements OnInit {
 
   ngOnInit(): void {
 
-
     this.http
       .post<any>(this.baseBackendUrl + this.requisitoTramiteUrl, { 'nroTramite': this.nroTramite }, this.requestOptions)
       .subscribe({
@@ -43,7 +41,6 @@ export class LegajoComponent implements OnInit {
 
   verRequisito(row: Requisito): void {
     let idThuban = row.idThuban;
-
     this.http
     .post<any>(this.baseBackendUrl + this.showPDFUrl, { 'idThuban':idThuban }, this.requestOptions)
     .subscribe({
@@ -65,6 +62,7 @@ export class LegajoComponent implements OnInit {
     //this.pdfSrc = fileURL;
     window.open(fileURL);
   }
+
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -81,7 +79,4 @@ export class LegajoComponent implements OnInit {
 
     this.selection.select(...this.requisitos);
   }
-
-
-
 }

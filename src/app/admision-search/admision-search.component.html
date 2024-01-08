@@ -31,7 +31,7 @@
       [label]="totalPendingNumber > 1 ? totalPendingNumber + ' trámites encontrados': (totalPendingNumber == 1 ?'1 trámite encontrado':'Sin trámites')">
 
       <!-- colas -->
-      <mat-accordion class="custom-accordion" *ngIf="totalPendingNumber > 1">
+      <mat-accordion class="custom-accordion tree" *ngIf="totalPendingNumber > 1">
         <ng-container *ngFor="let spool of spoolerTable.spools">
           <mat-expansion-panel *ngFor="let filter of spool.filterBy">
             <mat-expansion-panel-header>

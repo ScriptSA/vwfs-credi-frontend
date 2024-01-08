@@ -119,6 +119,20 @@ app-main-frame {
           }
 
           button {
+            mat-icon {
+              min-width: 32px;
+            }
+
+            .mdc-button__label {
+              max-width: calc(100% - 32px - 8px);
+
+              .link-txt {
+                max-width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
+            }
+
             &.sub-item {
               height: 48px !important;
               display: flex;
@@ -221,7 +235,8 @@ app-main-frame {
 
         .logo {
           height: 20px;
-          img{
+
+          img {
             height: 100%;
           }
         }
