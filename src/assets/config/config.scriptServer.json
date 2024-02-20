@@ -1,5 +1,5 @@
 {
   "currentBaseUrl": "//localhost:4200",
-  "backendBaseUrl": "http://gruposcriptbbva.ddns.net:8080/credivwfs",
+  "backendBaseUrl": "https://scriptarg.online:8080/credivwfs",
   "releaseName": "local"
 }

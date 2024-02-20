@@ -1,5 +1,5 @@
 {
   "currentBaseUrl": "//localhost:4200",
-  "backendBaseUrl": "http://localhost:8080/credivwfs",
+  "backendBaseUrl": "http://localhost:8080/vwfsclientespj/",
   "releaseName": "local"
 }
