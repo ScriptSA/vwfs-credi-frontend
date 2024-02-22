@@ -1,5 +1,5 @@
 {
   "currentBaseUrl": "https://localhost:7043",
-  "backendBaseUrl": "https://scriptarg.online:8443/credivwfs",
+  "backendBaseUrl": "https://remote.scriptarg.online:8443/credivwfs",
   "releaseName": "prod"
 }
